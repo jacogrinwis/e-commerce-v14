@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@plugin "flowbite/plugin";
+@source "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../views";
+
+@theme {
+    --color-slate-500: oklch(51.55% 0.029 255.437);
+    --color-gray-500: oklch(52.95% 0.022 264.009);
+    --color-zinc-500: oklch(52.95% 0.022 264.009);
+    --color-neutral-500: oklch(52.95% 0.022 264.009);
+    --color-stone-500: oklch(52.95% 0.022 264.009);
+    --color-red-500: oklch(63.37% 0.221 27.549);
+    --color-orange-500: oklch(69.02% 0.165 41.335);
+    --color-amber-500: oklch(75.02% 0.147 68.098);
+    --color-yellow-500: oklch(84.81% 0.129 89.303);
+    --color-lime-500: oklch(78.66% 0.163 142.492);
+    --color-green-500: oklch(67.02% 0.196 142.492);
+    --color-emerald-500: oklch(64.81% 0.158 160.578);
+    --color-teal-500: oklch(64.81% 0.158 181.524);
+    --color-cyan-500: oklch(65.81% 0.158 197.137);
+    --color-sky-500: oklch(65.81% 0.158 221.137);
+    --color-blue-500: oklch(55.81% 0.158 241.137);
+    --color-indigo-500: oklch(54.81% 0.158 261.137);
+    --color-violet-500: oklch(54.81% 0.158 281.137);
+    --color-purple-500: oklch(54.81% 0.158 301.137);
+    --color-fuchsia-500: oklch(54.81% 0.158 321.137);
+    --color-pink-500: oklch(54.81% 0.158 341.137);
+    --color-rose-500: oklch(54.81% 0.158 1.137);
+    --color-white: oklch(100% 0 0);
+    --color-black: oklch(0% 0 0);
+}
+
+@layer utilities {
+    .container {
+        margin-inline: auto;
+        max-width: 100%;
+        padding-inline: 1rem;
+        @media (width >= 1280px) {
+            max-width: var(--breakpoint-xl);
+        }
+    }
+
+    .bg-slate-500 {
+        background-color: var(--color-slate-500);
+    }
+    .bg-gray-500 {
+        background-color: var(--color-gray-500);
+    }
+    .bg-zinc-500 {
+        background-color: var(--color-zinc-500);
+    }
+    .bg-neutral-500 {
+        background-color: var(--color-neutral-500);
+    }
+    .bg-stone-500 {
+        background-color: var(--color-stone-500);
+    }
+    .bg-red-500 {
+        background-color: var(--color-red-500);
+    }
+    .bg-orange-500 {
+        background-color: var(--color-orange-500);
+    }
+    .bg-amber-500 {
+        background-color: var(--color-amber-500);
+    }
+    .bg-yellow-500 {
+        background-color: var(--color-yellow-500);
+    }
+    .bg-lime-500 {
+        background-color: var(--color-lime-500);
+    }
+    .bg-green-500 {
+        background-color: var(--color-green-500);
+    }
+    .bg-emerald-500 {
+        background-color: var(--color-emerald-500);
+    }
+    .bg-teal-500 {
+        background-color: var(--color-teal-500);
+    }
+    .bg-cyan-500 {
+        background-color: var(--color-cyan-500);
+    }
+    .bg-sky-500 {
+        background-color: var(--color-sky-500);
+    }
+    .bg-blue-500 {
+        background-color: var(--color-blue-500);
+    }
+    .bg-indigo-500 {
+        background-color: var(--color-indigo-500);
+    }
+    .bg-violet-500 {
+        background-color: var(--color-violet-500);
+    }
+    .bg-purple-500 {
+        background-color: var(--color-purple-500);
+    }
+    .bg-fuchsia-500 {
+        background-color: var(--color-fuchsia-500);
+    }
+    .bg-pink-500 {
+        background-color: var(--color-pink-500);
+    }
+    .bg-rose-500 {
+        background-color: var(--color-rose-500);
+    }
+    .bg-white {
+        background-color: var(--color-white);
+    }
+    .bg-black {
+        background-color: var(--color-black);
+    }
+}
