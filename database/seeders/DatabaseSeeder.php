@@ -27,10 +27,12 @@ class DatabaseSeeder extends Seeder
         // Material::factory(20)->create();
 
         $this->call([
+            UserSeeder::class,
             CategorySeeder::class,
             ColorSeeder::class,
             MaterialSeeder::class,
             TagSeeder::class,
+            StockStatusSeeder::class,
             ProductSeeder::class,
             ProductImageSeeder::class,
         ]);

@@ -99,7 +99,7 @@
                 </button>
             @endforeach
 
-            @foreach ($tags->whereIn('id', $selectedTags) as $tag)
+            {{-- @foreach ($tags->whereIn('id', $selectedTags) as $tag)
                 <button
                     wire:key="active-tag-{{ $tag->id }}"
                     wire:click="removeFilter('tags', {{ $tag->id }})"
@@ -118,7 +118,7 @@
                         />
                     </svg>
                 </button>
-            @endforeach
+            @endforeach --}}
 
         </div>
     </section>

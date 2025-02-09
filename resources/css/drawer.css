@@ -1,0 +1,162 @@
+dialog.drawer {
+    --duration: 300ms;
+    transition: translate var(--duration) ease-in-out allow-discrete,
+        transform var(--duration) ease-in-out allow-discrete,
+        display var(--duration) ease-in-out allow-discrete,
+        overlay var(--duration) ease-in-out allow-discrete,
+        opacity var(--duration) ease-in-out allow-discrete;
+
+    &[open] {
+        opacity: 1;
+
+        @starting-style {
+            opacity: 0;
+        }
+    }
+
+    &:not([open]) {
+        opacity: 0;
+    }
+
+    &::backdrop {
+        transition: opacity var(--duration) ease-in-out allow-discrete,
+            display var(--duration) ease-in-out allow-discrete;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &[open]::backdrop {
+        opacity: 1;
+    }
+
+    &:not([open])::backdrop {
+        opacity: 0;
+    }
+
+    @starting-style {
+        &[open]::backdrop {
+            opacity: 0;
+        }
+    }
+}
+
+/* Left drawer */
+dialog[data-drawer-position="left"].drawer {
+    inset-inline-start: 0;
+    inset-block: 0;
+    height: 100dvh;
+    min-height: 100dvh;
+    /* width: calc(0.25rem * 64); */
+    margin-right: auto;
+
+    &[open] {
+        transform: translateX(0);
+
+        @starting-style {
+            transform: translateX(-100%);
+        }
+    }
+
+    &:not([open]) {
+        transform: translateX(-100%);
+    }
+}
+
+/* Right drawer */
+dialog[data-drawer-position="right"].drawer {
+    inset-inline-end: 0;
+    inset-block: 0;
+    height: 100dvh;
+    min-height: 100dvh;
+    /* width: calc(0.25rem * 64); */
+    margin-left: auto;
+
+    &[open] {
+        transform: translateX(0);
+
+        @starting-style {
+            transform: translateX(100%);
+        }
+    }
+
+    &:not([open]) {
+        transform: translateX(100%);
+    }
+}
+
+/* Top drawer */
+dialog[data-drawer-position="top"].drawer {
+    inset-inline: 0;
+    inset-block-start: 0;
+    height: calc(0.25rem * 64);
+    width: 100%;
+    min-width: 100%;
+    margin-bottom: auto;
+
+    &[open] {
+        transform: translateY(0);
+
+        @starting-style {
+            transform: translateY(-100%);
+        }
+    }
+
+    &:not([open]) {
+        transform: translateY(-100%);
+    }
+}
+
+/* Bottom drawer */
+dialog[data-drawer-position="bottom"].drawer {
+    inset-inline: 0;
+    inset-block-end: 0;
+    height: calc(0.25rem * 64);
+    width: 100%;
+    min-width: 100%;
+    margin-top: auto;
+
+    &[open] {
+        transform: translateY(0);
+
+        @starting-style {
+            transform: translateY(100%);
+        }
+    }
+
+    &:not([open]) {
+        transform: translateY(100%);
+    }
+}
+
+/* Drawer with backdrop blur */
+
+dialog[data-drawer-backdrop-blur="true"].drawer {
+    --duration: 300ms;
+
+    &::backdrop {
+        transition: backdrop-filter var(--duration) ease-in-out allow-discrete;
+    }
+
+    &[open]::backdrop {
+        backdrop-filter: blur(4px);
+    }
+
+    &:not([open])::backdrop {
+        backdrop-filter: blur(0);
+    }
+
+    @starting-style {
+        &[open]::backdrop {
+            backdrop-filter: blur(0);
+        }
+    }
+}
+
+/* Drawer Shadow */
+
+dialog[data-drawer-shadow="true"].drawer {
+    &[open] {
+        opacity: 1;
+        box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1),
+            0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+}

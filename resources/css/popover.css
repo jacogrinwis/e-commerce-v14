@@ -1,0 +1,49 @@
+.menu__popover {
+    inset: auto;
+    top: 3.5rem;
+    transition: display 500ms allow-discrete, opacity 500ms allow-discrete;
+    opacity: 0;
+
+    @media screen and (min-width: 640px) {
+        top: anchor(bottom);
+        right: anchor(right);
+    }
+
+    &:popover-open {
+        opacity: 1;
+
+        @starting-style {
+            opacity: 0;
+        }
+    }
+}
+
+.user-menu__button {
+    anchor-name: --user-menu;
+}
+
+.user-menu__popover {
+    @media screen and (min-width: 640px) {
+        position-anchor: --user-menu;
+    }
+}
+
+.favorites-menu__button {
+    anchor-name: --favorites-menu;
+}
+
+.favorites-menu__popover {
+    @media screen and (min-width: 640px) {
+        position-anchor: --favorites-menu;
+    }
+}
+
+.cart-menu__button {
+    anchor-name: --cart-menu;
+}
+
+.cart-menu__popover {
+    @media screen and (min-width: 640px) {
+        position-anchor: --cart-menu;
+    }
+}

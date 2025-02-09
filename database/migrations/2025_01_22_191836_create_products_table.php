@@ -23,7 +23,9 @@ return new class extends Migration
             $table->decimal('weight', 8, 2)->nullable();
             $table->string('cover')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->enum('stock_status', ['in_stock', 'low_stock', 'out_of_stock', 'coming_soon'])->default('in_stock');
+            // $table->enum('stock_status', ['in_stock', 'low_stock', 'out_of_stock', 'coming_soon'])->default('in_stock');
+            $table->foreignId('stock_status_id')->after('id')->constrained();
+            // $table->dropColumn('stock_status');
             $table->timestamps();
         });
     }

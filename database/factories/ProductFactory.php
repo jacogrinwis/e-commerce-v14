@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\StockStatus;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -39,7 +40,8 @@ class ProductFactory extends Factory
             'dimensions' => $this->faker->numberBetween(10, 100) . ' x ' . $this->faker->numberBetween(10, 100) . ' x ' . $this->faker->numberBetween(10, 100) . ' cm',
             'weight' => $this->faker->randomFloat(2, 0.1, 50),
             'category_id' => Category::inRandomOrder()->first()->id,
-            'stock_status' => fake()->randomElement(['in_stock', 'low_stock', 'out_of_stock', 'coming_soon']),
+            // 'stock_status' => fake()->randomElement(['in_stock', 'low_stock', 'out_of_stock', 'coming_soon']),
+            'stock_status_id' => StockStatus::inRandomOrder()->first()->id,
         ];
     }
 

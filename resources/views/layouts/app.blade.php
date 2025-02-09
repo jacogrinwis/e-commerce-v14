@@ -10,12 +10,13 @@
 
     <title>{{ $title ?? 'Page Title' }}</title>
 
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 
 <body>
-    @include('partials.navbar.navbar')
+    {{-- @include('partials.navbar.navbar') --}}
+    <livewire:ui.navbar.navbar />
     {{ $slot }}
     @livewireScripts
 </body>
