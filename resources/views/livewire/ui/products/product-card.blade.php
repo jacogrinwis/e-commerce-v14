@@ -40,6 +40,9 @@
                 </a>
             </div>
             <div>
+                <livewire:ui.products.favorite-button :product="$product" />
+            </div>
+            <div>
                 <x-products.stock-status :status="$product->stock_status" />
             </div>
             <div class="mb-2 grid h-14 grid-cols-2 gap-2">

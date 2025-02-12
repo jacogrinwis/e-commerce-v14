@@ -68,34 +68,26 @@
                         <div class="truncate font-semibold">{{ auth()->user()->email }}</div>
                     </div>
                     <ul class="py-2">
-                        <li>
-                            <a
+                        <li><a
                                 href="#"
                                 wire:navigate
                                 class="block px-4 py-2 hover:bg-gray-100"
-                            >Overzicht dashboard</a>
-                        </li>
-                        <li>
-                            <a
+                            >Overzicht dashboard</a></li>
+                        <li><a
                                 href="#"
                                 wire:navigate
                                 class="block px-4 py-2 hover:bg-gray-100"
-                            >Gegevens</a>
-                        </li>
-                        <li>
-                            <a
+                            >Gegevens</a></li>
+                        <li><a
                                 href="#"
                                 wire:navigate
                                 class="block px-4 py-2 hover:bg-gray-100"
-                            >Bestellingen</a>
-                        </li>
-                        <li>
-                            <a
+                            >Bestellingen</a></li>
+                        <li><a
                                 href="#"
                                 wire:navigate
                                 class="block px-4 py-2 hover:bg-gray-100"
-                            >Verlanglijstje</a>
-                        </li>
+                            >Verlanglijstje</a></li>
                     </ul>
                     <div class="py-2">
                         <a
