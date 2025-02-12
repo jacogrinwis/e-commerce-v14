@@ -1,4 +1,4 @@
-<button
+{{-- <button
     wire:click="toggleFavorite"
     class="{{ $isFavorited ? 'bg-red-100 text-red-600' : 'bg-gray-100' }} flex items-center gap-2 rounded-lg px-4 py-2"
 >
@@ -16,4 +16,14 @@
         />
     </svg>
     {{ $isFavorited ? 'Favoriet' : 'Voeg toe aan favorieten' }}
+</button> --}}
+
+
+<button
+    wire:click="toggleFavorite"
+    class="group inline-flex size-10 items-center justify-center rounded-md text-lg font-semibold transition-all duration-300"
+>
+    <x-icons.solid.hart
+        class="{{ $isFavorited ? 'stroke-transparent fill-red-500' : 'stroke-gray-300 fill-white hover:fill-red-500 hover:stroke-transparent' }} xstroke-2 size-7"
+    />
 </button>

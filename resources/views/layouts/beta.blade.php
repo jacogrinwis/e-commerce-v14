@@ -21,7 +21,7 @@
     </script>
 </head>
 
-<body>
+<body class="pt-20">
     <x-navbar.navbar>
         <div class="flex items-center gap-4">
 

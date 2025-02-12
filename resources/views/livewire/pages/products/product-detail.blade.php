@@ -147,13 +147,14 @@
                         </span>
                         <span>In winkelwagen</span>
                     </button>
-                    <button
+                    {{-- <button
                         class="group inline-flex h-10 items-center rounded-md bg-white text-lg font-semibold transition-all duration-300"
                     >
                         <x-icons.solid.hart
                             class="size-8 stroke-gray-500 text-transparent transition-all duration-300 group-hover:stroke-red-500 group-hover:text-red-500"
                         />
-                    </button>
+                    </button> --}}
+                    <livewire:ui.products.favorite-button :product="$product" />
                 </div>
                 <div class="space-x-1">
                     <h4 class="mb-1 text-base font-semibold">Kleur:</h4>
