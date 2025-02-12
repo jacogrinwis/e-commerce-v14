@@ -20,7 +20,8 @@ Route::get('/demo/layout-detail', \App\Livewire\Pages\Demo\LayoutDetail::class)-
 Route::get('/login', \App\Livewire\Ui\Auth\Login::class)->name('login');
 Route::get('/logout', \App\Livewire\Ui\Auth\Logout::class)->name('logout');
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
+    Route::get('/user/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
+    Route::get('/user/wishlist', \App\Livewire\Pages\User\Wishlist::class)->name('wishlist');
 
     Route::middleware('role:' . UserRole::ADMIN->value)->group(function () {
         Route::get('/admin', function () {
@@ -34,3 +35,5 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 });
+
+Route::get('/beta/products', \App\Livewire\Pages\Beta\ProductList::class)->name('beta.products');

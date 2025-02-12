@@ -45,7 +45,6 @@ dialog[data-drawer-position="left"].drawer {
     inset-block: 0;
     height: 100dvh;
     min-height: 100dvh;
-    /* width: calc(0.25rem * 64); */
     margin-right: auto;
 
     &[open] {
@@ -67,7 +66,6 @@ dialog[data-drawer-position="right"].drawer {
     inset-block: 0;
     height: 100dvh;
     min-height: 100dvh;
-    /* width: calc(0.25rem * 64); */
     margin-left: auto;
 
     &[open] {

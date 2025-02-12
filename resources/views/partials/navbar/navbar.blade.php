@@ -1,5 +1,5 @@
 <nav class="fixed start-0 top-0 z-50 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
-    <div class="_max-w-screen-xl _p-4 container mx-auto flex flex-wrap items-center justify-between py-4">
+    <div class="_max-w-screen-xl container mx-auto flex flex-wrap items-center justify-between py-4">
         <a
             href="https://flowbite.com/"
             class="flex items-center space-x-3 rtl:space-x-reverse"
