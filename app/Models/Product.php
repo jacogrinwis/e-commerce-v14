@@ -110,4 +110,21 @@ class Product extends Model
         }
         return $this->price;
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    // Handige methode om gemiddelde rating op te halen
+    public function getAverageRatingAttribute()
+    {
+        return $this->ratings()->avg('rating') ?? 0;
+    }
+
+    // Methode om aantal ratings op te halen
+    public function getRatingCountAttribute()
+    {
+        return $this->ratings()->count();
+    }
 }
