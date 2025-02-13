@@ -1,3 +1,44 @@
-<div>
-    {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
+<div class="w-[calc(24rem-2rem)]">
+    @if ($itemCount > 0)
+        <div class="flex flex-col gap-4 divide-y divide-gray-200">
+            @foreach ($cartItems as $item)
+                {{-- @dump($item) --}}
+                <div class="flex items-center gap-4 pb-4">
+                    <div class="shrink-0">
+                        <img
+                            src="{{ asset($item['product']->cover) }}"
+                            alt="{{ $item['product']->cover }}"
+                            class="aspect-square size-12 rounded object-cover"
+                        >
+                    </div>
+                    <div class="min-w-0 grow truncate text-sm">
+                        {{ $item['product']->name }}
+                        @if ($item['quantity'] > 1)
+                            <p class="mt-1">Aantal {{ $item['quantity'] }}</p>
+                        @endif
+                    </div>
+                    <div class="flex shrink-0 flex-col text-right">
+                        <div class="text-sm font-bold">
+                            {{ formatPrice($item['product']->price * $item['quantity']) }}
+                        </div>
+                        <div class="">
+                            <button
+                                class="cursor-pointer text-sm text-gray-600 hover:underline"
+                                wire:click="removeItem({{ $item['product']->id }})"
+                            >verwijderen</button>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <button class="btn btn-primary mb-2 mt-4 w-full">Bestellen</button>
+        <button class="btn btn-secondary w-full">Wijzig winkelwagen</button>
+    @else
+        <h5 class="text-xl font-semibold">Je winkelwagen is nog leeg!</h5>
+        <p class="my-4 text-sm">Ontdek ons aanbod en voeg artikelen toe aan je winkelmand!</p>
+        <button
+            class="btn btn-secondary mt-4 w-full"
+            data-drawer-close
+        >Verder winkelen</button>
+    @endif
 </div>

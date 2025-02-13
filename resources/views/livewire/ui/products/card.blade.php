@@ -51,9 +51,9 @@
                 <div class="grid items-end justify-end">
                     <div class="relative">
                         <div class="relative z-20">
-                            <x-products.add-to-cart-button
+                            <livewire:ui.products.add-to-cart-listing-button
                                 @click.prevent.stop
-                                :id="$product->id"
+                                :productId="$product->id"
                                 :disabled="$product->stock_status === 'out_of_stock' ? true : false"
                             />
                         </div>

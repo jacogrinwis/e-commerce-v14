@@ -23,6 +23,9 @@ Route::prefix('products')->name('products.')->group(function () {
 Route::prefix('user')->name('user.')->middleware('auth')->group(function () {
     Route::get('/dashboard', \App\Livewire\Pages\User\DashboardPage::class)->name('dashboard');
     Route::get('/wishlist', \App\Livewire\Pages\User\WishlistPage::class)->name('wishlist');
+    Route::get('/orders', \App\Livewire\Pages\User\OrdersPage::class)->name('orders');
+    Route::get('/reviews', \App\Livewire\Pages\User\ReviewsPage::class)->name('reviews');
+    Route::get('/details', \App\Livewire\Pages\User\DetailsPage::class)->name('details');
 });
 
 // Admin routes

@@ -32,6 +32,9 @@ class FavoriteButton extends Component
         }
 
         $this->isFavorited = !$this->isFavorited;
+
+        // Dispatch event when favorites change
+        $this->dispatch('favorites-updated');
     }
 
     public function render()
