@@ -1,4 +1,4 @@
-<div class="mt-20">
+<div class="container">
     <h1>Welkom, {{ $user->name }}</h1>
     <p>Jouw rol: {{ $user->role->value }}</p>
 

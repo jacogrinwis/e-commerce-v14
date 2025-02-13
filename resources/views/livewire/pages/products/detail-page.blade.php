@@ -2,7 +2,7 @@
     use Illuminate\Support\Facades\Route;
 @endphp
 
-<div class="container my-24">
+<div class="container">
 
 
 

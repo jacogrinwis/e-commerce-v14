@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Pages\User;
 
 use Illuminate\Support\Facades\Auth;
 
 use Livewire\Component;
 
-class Dashboard extends Component
+class DashboardPage extends Component
 {
     public function render()
     {
-        return view('livewire.dashboard', [
+        return view('livewire.pages.user.dashboard-page', [
             'user' => Auth::user(),
         ]);
     }

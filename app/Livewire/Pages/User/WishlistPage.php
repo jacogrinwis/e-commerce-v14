@@ -4,10 +4,10 @@ namespace App\Livewire\Pages\User;
 
 use Livewire\Component;
 
-class Wishlist extends Component
+class WishlistPage extends Component
 {
     public function render()
     {
-        return view('livewire.pages.user.wishlist');
+        return view('livewire.pages.user.wishlist-page');
     }
 }

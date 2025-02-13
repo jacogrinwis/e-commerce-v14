@@ -1,4 +1,4 @@
-<div class="container my-24 grid grid-cols-4 gap-16">
+<div class="container grid grid-cols-4 gap-16">
     <aside
         wire:loading.class="opacity-50"
         x-data="{ open: true }"

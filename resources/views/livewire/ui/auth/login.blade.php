@@ -3,8 +3,11 @@
         <div class="mb-4 rounded bg-red-500 p-2 text-white">{{ session('message') }}</div>
     @endif
 
-    <form wire:submit.prevent="login">
-        <p class="mb-4 text-sm">Heb je al een Cameranu account? Log hieronder in.</p>
+    <form
+        wire:submit="login"
+        method="POST"
+    >
+        <p class="mb-4 text-sm">Heb je al een account? Log hieronder in.</p>
         <div class="mb-4">
             <label
                 for="email"

@@ -1,3 +1,3 @@
 <div class="container">
-    Home Page
+    About Page
 </div>

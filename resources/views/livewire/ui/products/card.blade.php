@@ -1,6 +1,6 @@
 <div class="col-md-4">
     <div
-        class="hover:scale-102 space-y-2 rounded border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg">
+        class="hover:scale-101 space-y-2 rounded border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg">
         <div class="card-body">
 
             <div class="relative mb-2">
@@ -27,7 +27,7 @@
                     href="{{ route('products.detail', ['product' => $product->slug]) }}"
                     wire:navigate
                 >
-                    <h2 class="line-clamp-2 text-xl font-semibold">{{ $product->name }}</h2>
+                    <h2 class="line-clamp-2 text-lg font-semibold tracking-tight">{{ $product->name }}</h2>
                 </a>
             </div>
             <div>
