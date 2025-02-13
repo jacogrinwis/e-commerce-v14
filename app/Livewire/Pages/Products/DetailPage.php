@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Products;
 
+use App\Facades\Cart;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -31,9 +32,11 @@ class DetailPage extends Component
         }
     }
 
-    public function addToCart()
+    public function addToCart($productId)
     {
-        // Cart logic here
+        Cart::addToCart($productId);
+
+        $this->dispatch('cart-updated');
     }
 
     public function render()

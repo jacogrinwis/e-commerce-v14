@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Livewire\Ui\Cart;
+
+use Livewire\Component;
+
+class Overview extends Component
+{
+    public function render()
+    {
+        return view('livewire.ui.cart.overview');
+    }
+}
