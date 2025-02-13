@@ -21,8 +21,8 @@ Route::prefix('products')->name('products.')->group(function () {
 
 // User routes
 Route::prefix('user')->name('user.')->middleware('auth')->group(function () {
-    Route::get('/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
-    Route::get('/wishlist', \App\Livewire\Pages\User\Wishlist::class)->name('wishlist');
+    Route::get('/dashboard', \App\Livewire\Pages\User\DashboardPage::class)->name('dashboard');
+    Route::get('/wishlist', \App\Livewire\Pages\User\WishlistPage::class)->name('wishlist');
 });
 
 // Admin routes
