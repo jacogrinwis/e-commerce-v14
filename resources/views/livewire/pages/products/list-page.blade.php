@@ -1,4 +1,8 @@
-<div class="container grid grid-cols-4 gap-16">
+<div class="container grid grid-cols-4 gap-x-16">
+
+    <div class="col-span-full mb-6">
+        <x-breadcrumb />
+    </div>
     <aside
         wire:loading.class="opacity-50"
         x-data="{ open: true }"

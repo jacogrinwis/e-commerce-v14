@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="mb-6">
+        <x-breadcrumb />
+    </div>
     <h1>Welkom, {{ $user->name }}</h1>
     <p>Jouw rol: {{ $user->role->value }}</p>
 

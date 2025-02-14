@@ -13,19 +13,35 @@ Route::middleware('guest')->group(function () {
 });
 Route::get('/auth/logout', \App\Livewire\Ui\Auth\Logout::class)->name('auth.logout');
 
+Route::get('/logout', function () {
+    Auth::logout();
+    session()->invalidate();
+    session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
+
 // Product routes
 Route::prefix('products')->name('products.')->group(function () {
     Route::get('/', App\Livewire\Pages\Products\ListPage::class)->name('list');
-    Route::get('/{product:slug}', App\Livewire\Pages\Products\DetailPage::class)->name('detail');
+    Route::get('/{category:slug}/{product:slug}', App\Livewire\Pages\Products\DetailPage::class)->name('detail');
 });
 
 // User routes
-Route::prefix('user')->name('user.')->middleware('auth')->group(function () {
-    Route::get('/dashboard', \App\Livewire\Pages\User\DashboardPage::class)->name('dashboard');
-    Route::get('/wishlist', \App\Livewire\Pages\User\WishlistPage::class)->name('wishlist');
-    Route::get('/orders', \App\Livewire\Pages\User\OrdersPage::class)->name('orders');
-    Route::get('/reviews', \App\Livewire\Pages\User\ReviewsPage::class)->name('reviews');
-    Route::get('/details', \App\Livewire\Pages\User\DetailsPage::class)->name('details');
+// Route::prefix('user')->name('user.')->middleware('auth')->group(function () {
+//     Route::get('/dashboard', \App\Livewire\Pages\User\DashboardPage::class)->name('dashboard');
+//     Route::get('/favorites', \App\Livewire\Pages\User\FavoritesPage::class)->name('favorites');
+//     Route::get('/orders', \App\Livewire\Pages\User\OrdersPage::class)->name('orders');
+//     Route::get('/reviews', \App\Livewire\Pages\User\ReviewsPage::class)->name('reviews');
+//     Route::get('/details', \App\Livewire\Pages\User\DetailsPage::class)->name('details');
+// });
+
+// Account routes
+Route::prefix('account')->name('account.')->middleware('auth')->group(function () {
+    Route::get('/dashboard', \App\Livewire\Pages\Account\DashboardPage::class)->name('dashboard');
+    Route::get('/favorites', \App\Livewire\Pages\Account\FavoritesPage::class)->name('favorites');
+    Route::get('/orders', \App\Livewire\Pages\Account\OrdersPage::class)->name('orders');
+    Route::get('/reviews', \App\Livewire\Pages\Account\ReviewsPage::class)->name('reviews');
+    Route::get('/details', \App\Livewire\Pages\Account\DetailsPage::class)->name('details');
 });
 
 // Admin routes

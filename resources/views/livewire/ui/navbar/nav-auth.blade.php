@@ -45,7 +45,7 @@
             <ul class="py-2">
                 <li>
                     <a
-                        href="{{ route('user.dashboard') }}"
+                        href="{{ route('account.dashboard') }}"
                         wire:navigate
                         class="block px-4 py-2 hover:bg-gray-100"
                     >
@@ -54,23 +54,25 @@
                 </li>
                 <li>
                     <a
-                        href="{{ route('user.details') }}"
+                        href="{{ route('account.details') }}"
                         wire:navigate
                         class="block px-4 py-2 hover:bg-gray-100"
                     >
-                        Gegevens
+                        Accountgegevens
                     </a>
                 </li>
                 <li>
                     <a
-                        href="{{ route('user.orders') }}"
+                        href="{{ route('account.orders') }}"
                         wire:navigate
                         class="block px-4 py-2 hover:bg-gray-100"
-                    >Bestellingen</a>
+                    >
+                        Mijn bestellingen
+                    </a>
                 </li>
                 <li>
                     <a
-                        href="{{ route('user.wishlist') }}"
+                        href="{{ route('account.favorites') }}"
                         wire:navigate
                         class="block px-4 py-2 hover:bg-gray-100"
                     >
@@ -80,7 +82,7 @@
             </ul>
             <div class="py-2">
                 <a
-                    href="{{ route('user.reviews') }}"
+                    href="{{ route('account.reviews') }}"
                     wire:navigate
                     class="block px-4 py-2 hover:bg-gray-100"
                 >

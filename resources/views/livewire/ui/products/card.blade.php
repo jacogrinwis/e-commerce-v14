@@ -5,7 +5,7 @@
 
             <div class="relative mb-2">
                 <a
-                    href="{{ route('products.detail', ['product' => $product->slug]) }}"
+                    href="{{ route('products.detail', ['category' => $product->category->slug, 'product' => $product->slug]) }}"
                     wire:navigate
                 >
                     <img
@@ -24,7 +24,7 @@
 
             <div class="h-14">
                 <a
-                    href="{{ route('products.detail', ['product' => $product->slug]) }}"
+                    href="{{ route('products.detail', ['category' => $product->category->slug, 'product' => $product->slug]) }}"
                     wire:navigate
                 >
                     <h2 class="line-clamp-2 text-lg font-semibold tracking-tight">{{ $product->name }}</h2>
