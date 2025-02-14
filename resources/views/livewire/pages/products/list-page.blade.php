@@ -405,16 +405,18 @@
 
     <main
         wire:loading.class="opacity-50"
-        class="col-span-3 grid grid-cols-3 gap-6"
+        class="col-span-3"
     >
-        @foreach ($products as $product)
-            <livewire:ui.products.card
-                :$product
-                wire:key="product-{{ $product->id }}"
-            />
-        @endforeach
-        <div class="col-span-3">
-            {{ $products->links() }}
+        <div class="grid grid-cols-3 gap-6">
+            @foreach ($products as $product)
+                <livewire:ui.products.card
+                    :$product
+                    wire:key="product-{{ $product->id }}"
+                />
+            @endforeach
+            <div class="col-span-3 mb-6">
+                {{ $products->links() }}
+            </div>
         </div>
     </main>
 </div>

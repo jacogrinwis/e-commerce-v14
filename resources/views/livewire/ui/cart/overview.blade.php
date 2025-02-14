@@ -14,7 +14,7 @@
                     <div class="min-w-0 grow truncate text-sm">
                         {{ $item['product']->name }}
                         @if ($item['quantity'] > 1)
-                            <p class="mt-1">Aantal {{ $item['quantity'] }}</p>
+                            <p class="mt-1 text-gray-500">Aantal {{ $item['quantity'] }}</p>
                         @endif
                     </div>
                     <div class="flex shrink-0 flex-col text-right">
@@ -23,7 +23,7 @@
                         </div>
                         <div class="">
                             <button
-                                class="cursor-pointer text-sm text-gray-600 hover:underline"
+                                class="cursor-pointer text-sm text-gray-500 hover:underline"
                                 wire:click="removeItem({{ $item['product']->id }})"
                             >verwijderen</button>
                         </div>
@@ -31,6 +31,11 @@
                 </div>
             @endforeach
         </div>
+        <div class="flex justify-between border-t border-gray-200 py-4 text-lg font-semibold">
+            <span>Subtotaal</span>
+            <span>{{ formatPrice($subtotal) }}</span>
+        </div>
+        <p class="text-sm text-gray-500">Verzendkosten en belastingen worden berekend bij het afrekenen.</p>
         <button class="btn btn-primary mb-2 mt-4 w-full">Bestellen</button>
         <button class="btn btn-secondary w-full">Wijzig winkelwagen</button>
     @else
