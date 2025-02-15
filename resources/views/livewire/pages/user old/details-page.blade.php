@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <div class="rounded-md border border-gray-200 bg-white p-4 shadow">
+        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
             <h2 class="mb-4 text-xl font-semibold">Profiel bijwerken</h2>
 
             <form wire:submit="updateProfile">
@@ -28,7 +28,7 @@
                             type="text"
                             wire:model="name"
                             id="name"
-                            class="input-text w-full"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         >
                         @error('name')
                             <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
@@ -44,7 +44,7 @@
                             type="email"
                             wire:model="email"
                             id="email"
-                            class="input-text w-full"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         >
                         @error('email')
                             <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
@@ -54,14 +54,14 @@
 
                 <button
                     type="submit"
-                    class="btn btn-primary mt-6"
+                    class="mt-6 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                     Profiel opslaan
                 </button>
             </form>
         </div>
 
-        <div class="rounded-md border border-gray-200 bg-white p-4 shadow">
+        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
             <h2 class="mb-4 text-xl font-semibold">Wachtwoord wijzigen</h2>
 
             <form wire:submit="updatePassword">
@@ -75,7 +75,7 @@
                             type="password"
                             wire:model="current_password"
                             id="current_password"
-                            class="input-text w-full"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         >
                         @error('current_password')
                             <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
@@ -91,7 +91,7 @@
                             type="password"
                             wire:model="new_password"
                             id="new_password"
-                            class="input-text w-full"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         >
                         @error('new_password')
                             <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
@@ -107,14 +107,14 @@
                             type="password"
                             wire:model="new_password_confirmation"
                             id="new_password_confirmation"
-                            class="input-text w-full"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                         >
                     </div>
                 </div>
 
                 <button
                     type="submit"
-                    class="btn btn-primary mt-6"
+                    class="mt-6 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                     Wachtwoord wijzigen
                 </button>

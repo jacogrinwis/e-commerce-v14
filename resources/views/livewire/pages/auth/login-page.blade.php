@@ -8,13 +8,12 @@
             <p class="pb-4 text-sm text-gray-500">
                 Nog geen account? Hieronder kun je makkelijk een account aanmaken.
             </p>
-            <button
-                class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-black"
-            >
-                Account aanmaken
-            </button>
+            <a
+                href="{{ route('auth.register') }}"
+                class="btn btn-secondary block text-center"
+            >Account aanmaken</a>
         </div>
-        <div class="rounded-md border border-gray-200 p-4">
+        <div class="rounded-md border border-gray-200 p-6 shadow">
             <h5 class="mb-4 text-xl font-semibold">Al geregistreerd?</h5>
             <livewire:ui.auth.login />
         </div>

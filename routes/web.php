@@ -13,6 +13,7 @@ Route::get('/contact', \App\Livewire\Pages\Contact\ContactPage::class)->name('co
 // });
 Route::middleware('guest')->group(function () {
     Route::get('/auth/login', \App\Livewire\Pages\Auth\LoginPage::class)->name('auth.login');
+    Route::get('/auth/register', \App\Livewire\Pages\Auth\RegisterPage::class)->name('auth.register');
 });
 Route::get('/auth/logout', \App\Livewire\Ui\Auth\Logout::class)->name('auth.logout');
 
