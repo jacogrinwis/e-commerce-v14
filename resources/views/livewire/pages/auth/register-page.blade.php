@@ -18,7 +18,7 @@
                         type="text"
                         wire:model="name"
                         id="name"
-                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                        class="input-text w-full"
                     >
                     @error('name')
                         <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
@@ -34,7 +34,7 @@
                         type="email"
                         wire:model="email"
                         id="email"
-                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                        class="input-text w-full"
                     >
                     @error('email')
                         <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
@@ -50,7 +50,7 @@
                         type="password"
                         wire:model="password"
                         id="password"
-                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                        class="input-text w-full"
                     >
                     @error('password')
                         <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
@@ -66,14 +66,14 @@
                         type="password"
                         wire:model="password_confirmation"
                         id="password_confirmation"
-                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                        class="input-text w-full"
                     >
                 </div>
             </div>
 
             <button
                 type="submit"
-                class="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white"
+                class="btn btn-primary mt-6 w-full"
             >
                 Registreren
             </button>

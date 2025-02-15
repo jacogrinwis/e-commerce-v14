@@ -44,7 +44,7 @@
         </a>
     @else
         <h5 class="text-xl font-semibold">Je winkelwagen is nog leeg!</h5>
-        <p class="my-4 text-sm">Ontdek ons aanbod en voeg artikelen toe aan je winkelmand!</p>
+        <p class="my-4 text-sm text-gray-500">Ontdek ons aanbod en voeg artikelen toe aan je winkelmand!</p>
         <button
             class="btn btn-secondary mt-4 w-full"
             data-drawer-close
