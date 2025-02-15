@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Ui\Auth;
 
+use App\Facades\Cart;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,8 @@ class Login extends Component
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             session()->regenerate();
             $this->reset(['email', 'password', 'remember']);
+
+            Cart::mergeGuestCartWithUserCart();
 
             return $this->redirect($currentUrl);
         }
