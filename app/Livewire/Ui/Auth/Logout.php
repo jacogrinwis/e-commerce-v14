@@ -19,25 +19,26 @@ class Logout extends Component
      */
     public function logout()
     {
-        $currentUrl = request()->header('Referer');
+        // $currentUrl = request()->header('Referer');
 
         // Controleer of huidige pagina een beveiligde route is
-        if (
-            str_contains($currentUrl, 'admin') ||
-            str_contains($currentUrl, 'editor') ||
-            str_contains($currentUrl, 'user')
-        ) {
-            Auth::logout();
-            session()->invalidate();
-            session()->regenerateToken();
+        // if (
+        //     str_contains($currentUrl, 'admin') ||
+        //     str_contains($currentUrl, 'editor') ||
+        //     str_contains($currentUrl, 'user')
+        // ) {
+        //     Auth::logout();
+        //     session()->invalidate();
+        //     session()->regenerateToken();
 
-            return $this->redirect('/'); // Stuurt gebruiker naar homepage
-        }
+        //     return $this->redirect('/'); // Stuurt gebruiker naar homepage
+        // }
 
         Auth::logout();
         session()->invalidate();
         session()->regenerateToken();
-        return $this->redirect($currentUrl);
+        // return $this->redirect($currentUrl);
+        return $this->redirect(route('auth.login'));
     }
 
     /**

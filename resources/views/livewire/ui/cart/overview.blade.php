@@ -2,7 +2,6 @@
     @if ($itemCount > 0)
         <div class="flex flex-col gap-4 divide-y divide-gray-200">
             @foreach ($cartItems as $item)
-                {{-- @dump($item) --}}
                 <div class="flex items-center gap-4 pb-4">
                     <div class="shrink-0">
                         <img
@@ -37,7 +36,12 @@
         </div>
         <p class="text-sm text-gray-500">Verzendkosten en belastingen worden berekend bij het afrekenen.</p>
         <button class="btn btn-primary mb-2 mt-4 w-full">Bestellen</button>
-        <button class="btn btn-secondary w-full">Wijzig winkelwagen</button>
+        <a
+            href="{{ route('cart.shopping-cart') }}"
+            class="btn btn-secondary mb-2 mt-4 block text-center"
+        >
+            Wijzig winkelwagen
+        </a>
     @else
         <h5 class="text-xl font-semibold">Je winkelwagen is nog leeg!</h5>
         <p class="my-4 text-sm">Ontdek ons aanbod en voeg artikelen toe aan je winkelmand!</p>
