@@ -7,6 +7,10 @@ use App\Models\CartItem;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Service class voor het beheren van de winkelwagen functionaliteit
+ * Handelt zowel gast-winkelwagens (sessie) als gebruiker-winkelwagens (database) af
+ */
 class CartService
 {
     /**
@@ -119,14 +123,38 @@ class CartService
 
     /**
      * Berekent het subtotaal van de winkelwagen
-     * Vermenigvuldigt de prijs van elk product met de hoeveelheid
-     * en telt alles bij elkaar op
+     * Gebruikt de prijs na eventuele productkorting
+     * Vermenigvuldigt de prijs met de hoeveelheid per product
      */
     public function getSubtotal()
     {
         return $this->getCartItems()->sum(function ($item) {
-            return $item['product']->price * $item['quantity'];
+            return $item['product']->discounted_price * $item['quantity'];
         });
+    }
+
+    /**
+     * Berekent de totale korting op alle items in de winkelwagen
+     * Vergelijkt de originele prijs met de prijs na korting
+     * Geeft het totale kortingsbedrag terug
+     */
+    public function getDiscount()
+    {
+        return $this->getCartItems()->sum(function ($item) {
+            $originalPrice = $item['product']->price * $item['quantity'];
+            $discountedPrice = $item['product']->discounted_price * $item['quantity'];
+            return $originalPrice - $discountedPrice;
+        });
+    }
+
+    /**
+     * Berekent het eindtotaal van de winkelwagen
+     * Dit is het subtotaal na aftrek van eventuele kortingen
+     * Kan later uitgebreid worden met verzendkosten of andere toeslagen
+     */
+    public function getTotal()
+    {
+        return $this->getSubtotal();
     }
 
     /**

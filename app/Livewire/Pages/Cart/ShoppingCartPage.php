@@ -57,6 +57,8 @@ class ShoppingCartPage extends Component
         return view('livewire.pages.cart.shopping-cart-page', [
             'cartItems' => Cart::getCartItems(),
             'subtotal' => Cart::getSubtotal(),
+            'discount' => Cart::getDiscount(),
+            'total' => Cart::getTotal(),
             'itemCount' => Cart::getItemCount(),
         ]);
     }

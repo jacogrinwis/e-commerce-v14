@@ -127,4 +127,12 @@ class Product extends Model
     {
         return $this->ratings()->count();
     }
+
+    public function getDiscountedPriceAttribute()
+    {
+        if ($this->discount > 0) {
+            return $this->price * (1 - $this->discount / 100);
+        }
+        return $this->price;
+    }
 }

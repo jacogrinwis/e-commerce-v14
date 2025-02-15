@@ -1,5 +1,5 @@
-<aside class="rounded-md border border-gray-200 shadow-sm">
-    <h2 class="px-6 pt-4 text-lg font-semibold">Mijn account</h2>
+<aside class="h-fit rounded-md border border-gray-200 shadow-sm">
+    <h2 class="px-6 pt-4 text-xl font-semibold">Mijn account</h2>
     <div class="divide-y divide-gray-100 px-2 text-sm text-gray-700">
         <ul class="py-2">
             <li><a

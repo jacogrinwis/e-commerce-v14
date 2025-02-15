@@ -21,7 +21,7 @@ Route::get('/logout', function () {
     Auth::logout();
     session()->invalidate();
     session()->regenerateToken();
-    return redirect('/');
+    return redirect(route('auth.login'));
 })->name('logout');
 
 // Product routes

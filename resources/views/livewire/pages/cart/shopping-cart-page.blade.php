@@ -1,11 +1,14 @@
-<div class="container">
-    <div class="grid grid-cols-4 gap-x-6">
-        <div class="col-span-3 min-h-96">
+<div class="container pb-6">
+    <div>
+        <h4 class="mb-4 text-2xl font-semibold">Winkelwagen</h4>
+    </div>
+    <div class="grid grid-cols-4 gap-x-16">
+        <div class="col-span-3">
             @if ($itemCount > 0)
                 <div class="space-y-6">
                     @foreach ($cartItems as $item)
                         <div
-                            class="rounded-md border border-gray-200 p-4"
+                            class="rounded-md border border-gray-200 p-4 shadow"
                             wire:key="cart-item-{{ $item['product']->id }}"
                         >
                             <div class="flex items-center justify-between gap-12">
@@ -69,9 +72,21 @@
                                         </button>
                                     </div>
                                     <div class="w-32 text-end">
-                                        <p class="text-base font-bold">
-                                            {{ formatPrice($item['product']->price) }}
-                                        </p>
+                                        {{-- <p class="text-base font-bold">
+                                            {{ formatPrice($item['product']->price * $item['quantity']) }}
+                                        </p> --}}
+                                        @if ($item['product']->discount > 0)
+                                            <p class="text-sm text-gray-500 line-through">
+                                                {{ formatPrice($item['product']->price * $item['quantity']) }}
+                                            </p>
+                                            <p class="text-base font-bold text-red-600">
+                                                {{ formatPrice($item['product']->discounted_price * $item['quantity']) }}
+                                            </p>
+                                        @else
+                                            <p class="text-base font-bold">
+                                                {{ formatPrice($item['product']->price * $item['quantity']) }}
+                                            </p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -81,6 +96,40 @@
             @else
             @endif
         </div>
-        <div class="col-span-1 min-h-96 rounded-md border border-gray-200 p-4"></div>
+        <div class="col-span-1 h-fit rounded-md border border-gray-200 p-6 shadow">
+            <h4 class="mb-4 text-2xl font-semibold">Besteloverzicht</h4>
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <dl class="flex justify-between">
+                        <dt class="text-base">Subtotaal</dt>
+                        <dd class="text-base font-medium">{{ formatPrice($subtotal) }}</dd>
+                    </dl>
+                    @if ($discount > 0)
+                        <dl class="flex justify-between text-red-600">
+                            <dt class="text-base">Korting</dt>
+                            <dd class="text-base font-medium">-{{ formatPrice($discount) }}</dd>
+                        </dl>
+                    @endif
+                </div>
+                <dl class="flex justify-between border-t border-gray-200 pt-2">
+                    <dt class="text-base font-semibold">Totaal</dt>
+                    <dd class="text-lg font-bold">{{ formatPrice($total) }}</dd>
+                </dl>
+            </div>
+            <a
+                href="#"
+                class="btn btn-primary mt-6 block text-center"
+            >
+                Doorgaan met bestellen
+            </a>
+            <p class="mt-4 text-center text-sm text-gray-500">
+                of <a
+                    href="#"
+                    class="text-blue-500 underline"
+                >
+                    Verder winkelen
+                </a>
+            </p>
+        </div>
     </div>
 </div>

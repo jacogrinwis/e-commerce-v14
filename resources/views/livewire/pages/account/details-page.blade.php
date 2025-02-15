@@ -1,4 +1,4 @@
-<div class="container grid grid-cols-4 gap-x-16">
+<div class="container grid grid-cols-4 gap-x-16 pb-6">
     <div class="col-span-full mb-6">
         <x-breadcrumb />
     </div>
@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <div class="rounded-md border border-gray-200 bg-white p-4 shadow">
+        <div class="rounded-md border border-gray-200 bg-white p-6 shadow">
             <h2 class="mb-4 text-xl font-semibold">Profiel bijwerken</h2>
 
             <form wire:submit="updateProfile">
@@ -61,7 +61,7 @@
             </form>
         </div>
 
-        <div class="rounded-md border border-gray-200 bg-white p-4 shadow">
+        <div class="rounded-md border border-gray-200 bg-white p-6 shadow">
             <h2 class="mb-4 text-xl font-semibold">Wachtwoord wijzigen</h2>
 
             <form wire:submit="updatePassword">
