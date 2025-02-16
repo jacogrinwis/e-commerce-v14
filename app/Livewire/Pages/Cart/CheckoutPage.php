@@ -61,13 +61,13 @@ class CheckoutPage extends Component
                 'product_id' => $item['product']->id,
                 'quantity' => $item['quantity'],
                 'price' => $item['product']->price,
-                'discount' => $item['product']->discount,
+                'discount' => $item['product']->discount ?? 0,
             ]);
         }
 
         Cart::clear();
 
-        return redirect()->route('checkout.confirmation', $order);
+        return redirect()->route('cart.checkout.confirmation', $order);
     }
 
     public function render()

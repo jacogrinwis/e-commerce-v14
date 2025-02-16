@@ -184,4 +184,17 @@ class CartService
     {
         Session::put('cart', $cart);
     }
+
+    /**
+     * Maakt de winkelwagen leeg
+     * Verwijdert alle items uit de sessie of database
+     */
+    public function clear()
+    {
+        if (Auth::check()) {
+            CartItem::where('user_id', Auth::id())->delete();
+        } else {
+            Session::forget('cart');
+        }
+    }
 }
