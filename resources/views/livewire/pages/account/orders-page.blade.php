@@ -1,4 +1,4 @@
-<div class="xgrid-cols-12 container grid grid-cols-4 gap-x-16">
+<div class="container grid grid-cols-4 gap-x-16">
     <div class="col-span-full mb-6">
         <x-breadcrumb />
     </div>
@@ -20,7 +20,7 @@
                             </div>
                             <div class="text-right">
                                 <p class="font-medium">{{ formatPrice($order->total_amount) }}</p>
-                                <span
+                                {{-- <span
                                     class="@switch($order->status)
                                         @case('pending') bg-yellow-100 text-yellow-800 @break
                                         @case('processing') bg-blue-100 text-blue-800 @break
@@ -29,7 +29,7 @@
                                     @endswitch inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
                                 >
                                     {{ ucfirst($order->status) }}
-                                </span>
+                                </span> --}}
                             </div>
                         </div>
                     </div>
