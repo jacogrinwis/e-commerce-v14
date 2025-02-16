@@ -40,7 +40,7 @@ class FavoriteButton extends Component
     public function toggleFavorite()
     {
         if (!Auth::check()) {
-            return redirect()->route('login');
+            return redirect()->route('auth.login');
         }
 
         if ($this->isFavorited) {
