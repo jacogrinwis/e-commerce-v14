@@ -3,7 +3,7 @@
         <x-breadcrumb />
     </div>
 
-
+    {{-- @dd(Auth::user()) --}}
 
     <form wire:submit="createOrder">
         <div class="grid grid-cols-12 gap-6">
