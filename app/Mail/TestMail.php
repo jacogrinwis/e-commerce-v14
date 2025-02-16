@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,14 +10,14 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-class NewOrderMail extends Mailable
+class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public Order $order)
+    public function __construct()
     {
         //
     }
@@ -29,8 +28,8 @@ class NewOrderMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Nieuwe bestelling #' . $this->order->order_number,
-            from: new Address('jacogrinwis@gmail.com', 'Webshop'),
+            from: new Address('jacogrinwis@gmail.com', 'Laravel'),
+            subject: 'Test Mail',
         );
     }
 
@@ -40,8 +39,7 @@ class NewOrderMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.new-order',
-            with: ['order' => $this->order]
+            view: 'emails.test-email',
         );
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\TestMail;
 use Illuminate\Support\Facades\Route;
 
 // Home route
@@ -58,4 +59,15 @@ Route::prefix('editor')->name('editor.')->middleware(['auth', 'role:' . \App\Enu
     Route::get('/', function () {
         return "Editor Sectie";
     })->name('dashboard');
+});
+
+// Route::get('/testmail', function () {
+//     Mail::to('jacogrinwis@gmail.com')
+//         ->send(new TestMail());
+//     return "Mail sent!";
+// });
+
+Route::get('/testmail', function () {
+    dd(config('services.resend.key'));
+    Mail::to('jacogrinwis@gmail.com')->send(new TestMail());
 });
