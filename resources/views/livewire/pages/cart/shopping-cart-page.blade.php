@@ -1,4 +1,4 @@
-<div class="container pb-6">
+<div class="container">
     <div>
         <h4 class="mb-4 text-2xl font-semibold">Winkelwagen</h4>
     </div>

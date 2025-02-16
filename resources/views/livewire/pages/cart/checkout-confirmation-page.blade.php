@@ -1,4 +1,4 @@
-<div class="container py-12">
+<div class="container">
     <div class="mx-auto max-w-3xl text-center">
         <h1 class="mb-4 text-3xl font-bold">Bedankt voor je bestelling!</h1>
         <p class="mb-8 text-gray-600">Je bestelnummer is: #{{ $order->order_number }}</p>

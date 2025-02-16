@@ -1,10 +1,7 @@
-<div class="container pb-6">
+<div class="container">
     <div class="mb-6">
         <x-breadcrumb />
     </div>
-
-    {{-- @dd(Auth::user()) --}}
-
     <form wire:submit="createOrder">
         <div class="grid grid-cols-12 gap-6">
             <div class="col-span-8">

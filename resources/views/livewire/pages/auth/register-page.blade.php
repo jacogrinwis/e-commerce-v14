@@ -1,4 +1,4 @@
-<div class="container mx-auto max-w-xl">
+<div class="container max-w-xl">
     {{-- <div class="mb-6">
         <x-breadcrumb />
     </div> --}}

@@ -25,7 +25,7 @@
     </script>
 </head>
 
-<body class="pt-24">
+<body class="pb-6 pt-24">
     @include('layouts.partials.navbar')
 
     {{ $slot }}

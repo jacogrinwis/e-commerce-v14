@@ -1,4 +1,4 @@
-<div class="container grid grid-cols-4 gap-x-6 pb-6">
+<div class="container grid grid-cols-4 gap-x-6">
     <div class="col-span-full mb-6">
         <x-breadcrumb />
     </div>
