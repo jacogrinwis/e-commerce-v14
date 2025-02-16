@@ -39,7 +39,7 @@
                                         />
                                         <button
                                             wire:click="removeItem({{ $item['product']->id }})"
-                                            class="inline-flex items-center gap-1 text-sm font-medium text-red-500 hover:text-red-500 hover:underline"
+                                            class="inline-flex items-center gap-1 text-sm text-red-500 hover:text-red-500 hover:underline"
                                         >
                                             <x-icons.close class="size-4" />
                                             Verwijderen
@@ -79,7 +79,7 @@
                                             <p class="text-sm text-gray-500 line-through">
                                                 {{ formatPrice($item['product']->price * $item['quantity']) }}
                                             </p>
-                                            <p class="text-base font-bold text-red-600">
+                                            <p class="text-base font-bold text-green-500">
                                                 {{ formatPrice($item['product']->discounted_price * $item['quantity']) }}
                                             </p>
                                         @else
@@ -105,9 +105,9 @@
                         <dd class="text-base font-medium">{{ formatPrice($subtotal) }}</dd>
                     </dl>
                     @if ($discount > 0)
-                        <dl class="flex justify-between text-red-600">
-                            <dt class="text-base">Korting</dt>
-                            <dd class="text-base font-medium">-{{ formatPrice($discount) }}</dd>
+                        <dl class="flex justify-between text-green-500">
+                            <dt class="text-base font-medium">Korting</dt>
+                            <dd class="text-base font-bold">-{{ formatPrice($discount) }}</dd>
                         </dl>
                     @endif
                 </div>
@@ -116,6 +116,7 @@
                     <dd class="text-lg font-bold">{{ formatPrice($total) }}</dd>
                 </dl>
             </div>
+            <p class="my-4 text-sm text-gray-500">Verzendkosten worden berekend bij het afrekenen.</p>
             <a
                 href="#"
                 class="btn btn-primary mt-6 block text-center"

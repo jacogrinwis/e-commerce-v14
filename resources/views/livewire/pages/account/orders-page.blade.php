@@ -48,9 +48,13 @@
                                 </div>
                                 <div class="text-right">
                                     @if ($item->product->discount_price > null)
-                                        <p class="font-medium">{{ formatPrice($item->product->discount_price) }}</p>
+                                        <p class="font-medium text-green-500">
+                                            {{ formatPrice($item->product->discount_price) }}
+                                        </p>
                                     @else
-                                        <p class="font-medium">{{ formatPrice($item->price) }}</p>
+                                        <p class="font-medium">
+                                            {{ formatPrice($item->price) }}
+                                        </p>
                                     @endif
                                     <p class="text-sm text-gray-600">Per stuk</p>
                                 </div>

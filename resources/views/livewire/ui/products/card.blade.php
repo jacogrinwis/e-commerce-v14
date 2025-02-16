@@ -39,7 +39,7 @@
                         <p class="text-base text-gray-500 line-through">
                             {{ formatPrice($product->price) }}
                         </p>
-                        <p class="text-xl font-bold text-red-600">
+                        <p class="text-xl font-bold text-green-500">
                             {{ formatPrice($product->discount_price) }}
                         </p>
                     @else

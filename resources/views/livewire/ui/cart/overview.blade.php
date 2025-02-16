@@ -17,10 +17,19 @@
                         @endif
                     </div>
                     <div class="flex shrink-0 flex-col text-right">
-                        <div class="text-sm font-bold">
-                            {{ formatPrice($item['product']->price * $item['quantity']) }}
-                        </div>
-                        <div class="">
+                        @if ($item['product']->discount > null)
+                            <div class="text-sm font-bold line-through">
+                                {{ formatPrice($item['product']->price * $item['quantity']) }}
+                            </div>
+                            <div class="text-sm font-bold text-green-500">
+                                {{ formatPrice($item['product']->discount_price * $item['quantity']) }}
+                            </div>
+                        @else
+                            <div class="text-sm font-bold">
+                                {{ formatPrice($item['product']->price * $item['quantity']) }}
+                            </div>
+                        @endif
+                        <div>
                             <button
                                 class="cursor-pointer text-sm text-gray-500 hover:underline"
                                 wire:click="removeItem({{ $item['product']->id }})"
@@ -34,7 +43,7 @@
             <span>Subtotaal</span>
             <span>{{ formatPrice($subtotal) }}</span>
         </div>
-        <p class="mt-2 text-sm text-gray-500">Verzendkosten en belastingen worden berekend bij het afrekenen.</p>
+        <p class="mt-2 text-sm text-gray-500">Verzendkosten worden berekend bij het afrekenen.</p>
         <button class="btn btn-primary mb-2 mt-4 w-full">Bestellen</button>
         <a
             href="{{ route('cart.shopping-cart') }}"
