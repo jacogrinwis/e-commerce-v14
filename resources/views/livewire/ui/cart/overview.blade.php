@@ -65,7 +65,7 @@
         {{-- <button class="btn btn-primary mb-2 mt-4 w-full">Bestellen</button> --}}
         <a
             href="{{ route('cart.checkout') }}"
-            class="btn btn-primary mb-2 mt-4 block text-center"
+            class="btn btn-primary mb-3 mt-4 block text-center"
         >
             Bestellen
         </a>

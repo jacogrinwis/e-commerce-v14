@@ -51,15 +51,15 @@
 
 @layer components {
     .btn {
-        @apply px-5 py-2.5 rounded-lg font-medium text-sm;
+        @apply px-5 py-2.5 rounded-lg font-medium text-sm cursor-pointer;
     }
 
     .btn-primary {
-        @apply bg-black text-white hover:bg-gray-800;
+        @apply bg-black text-white;
     }
 
     .btn-secondary {
-        @apply bg-white text-black hover:bg-gray-50 border border-gray-200;
+        @apply bg-gray-100 text-gray-600 hover:bg-gray-200;
     }
 
     .btn-danger {

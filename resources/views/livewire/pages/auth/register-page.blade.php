@@ -83,7 +83,7 @@
             Heb je al een account?
             <a
                 href="{{ route('auth.login') }}"
-                class="text-blue-500 hover:underline"
+                class="text-blue-600 hover:underline"
             >
                 Inloggen
             </a>

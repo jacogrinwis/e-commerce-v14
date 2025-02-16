@@ -20,7 +20,7 @@
                             </div>
                             <div class="text-right">
                                 <p class="font-medium">{{ formatPrice($order->total_amount) }}</p>
-                                {{-- <span
+                                <span
                                     class="@switch($order->status)
                                         @case('pending') bg-yellow-100 text-yellow-800 @break
                                         @case('processing') bg-blue-100 text-blue-800 @break
@@ -29,7 +29,14 @@
                                     @endswitch inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
                                 >
                                     {{ ucfirst($order->status) }}
-                                </span> --}}
+                                </span>
+                                <button
+                                    wire:click="deleteOrder({{ $order->id }})"
+                                    wire:confirm="Weet je zeker dat je deze bestelling wilt verwijderen?"
+                                    class="mt-2 text-sm text-red-600 hover:underline"
+                                >
+                                    Verwijderen
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -47,8 +54,13 @@
                                     <p class="text-sm text-gray-600">Aantal: {{ $item->quantity }}</p>
                                 </div>
                                 <div class="text-right">
-                                    @if ($item->product->discount_price > null)
-                                        <p class="font-medium text-green-500">
+                                    {{-- @dump($item->product->discount_price) --}}
+                                    {{-- @dump($item->product->discount) --}}
+                                    @if ($item->product->discount > null)
+                                        <p class="font-medium line-through">
+                                            {{ formatPrice($item->price) }}
+                                        </p>
+                                        <p class="font-medium text-red-600">
                                             {{ formatPrice($item->product->discount_price) }}
                                         </p>
                                     @else

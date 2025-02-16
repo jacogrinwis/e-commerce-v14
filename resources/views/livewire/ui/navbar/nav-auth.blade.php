@@ -15,9 +15,7 @@
                 <livewire:ui.auth.login />
                 <hr class="my-4 h-px border-0 bg-gray-200">
                 <p class="mb-4 text-sm text-gray-500">Nog geen account? Hieronder kun je makkelijk een account aanmaken.</p>
-                <button
-                    class="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-black"
-                >
+                <button class="btn btn-secondary w-full">
                     Account aanmaken
                 </button>
             </x-navbar.drawer-menu>

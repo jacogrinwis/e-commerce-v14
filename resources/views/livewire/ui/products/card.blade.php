@@ -20,6 +20,13 @@
                 <div class="absolute bottom-2 left-2">
                     <livewire:ui.products.color-badges :colors="$product->colors" />
                 </div>
+                @if ($product->discount > 0)
+                    <span
+                        class="absolute bottom-4 right-4 inline-flex items-center justify-center rounded-sm bg-red-600 px-0.5 px-1 text-sm font-bold text-white"
+                    >
+                        korting {{ $product->discount }}%
+                    </span>
+                @endif
             </div>
 
             <div class="h-14">

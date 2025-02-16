@@ -180,7 +180,7 @@
                 @if ($categories->count() > 10)
                     <button
                         wire:click="$toggle('showAllCategories')"
-                        class="text-sm font-semibold text-blue-600"
+                        class="cursor-pointer text-sm font-semibold text-blue-600"
                     >
                         {{ $showAllCategories ? 'Toon minder' : 'Toon meer (' . ($categories->count() - 5) . ')' }}
                     </button>
@@ -237,7 +237,7 @@
                 @if ($colors->count() > 10)
                     <button
                         wire:click="$toggle('showAllColors')"
-                        class="text-sm font-semibold text-blue-600"
+                        class="cursor-pointer text-sm font-semibold text-blue-600"
                     >
                         {{ $showAllColors ? 'Toon minder' : 'Toon meer (' . ($colors->count() - 5) . ')' }}
                     </button>
@@ -291,7 +291,7 @@
                 @if ($categories->count() > 10)
                     <button
                         wire:click="$toggle('showAllMaterials')"
-                        class="text-sm font-semibold text-blue-600"
+                        class="cursor-pointer text-sm font-semibold text-blue-600"
                     >
                         {{ $showAllMaterials ? 'Toon minder' : 'Toon meer (' . ($materials->count() - 5) . ')' }}
                     </button>
@@ -393,7 +393,7 @@
                 @if ($tags->count() > 10)
                     <button
                         wire:click="$toggle('showAllTags')"
-                        class="text-sm font-semibold text-blue-600"
+                        class="cursor-pointer text-sm font-semibold text-blue-600"
                     >
                         {{ $showAllTags ? 'Toon minder' : 'Toon meer (' . ($tags->count() - 5) . ')' }}
                     </button>
