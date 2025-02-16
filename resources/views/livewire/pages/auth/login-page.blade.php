@@ -1,7 +1,7 @@
 <div class="container">
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-cols-2 gap-x-16">
         <div class="col-span-full">
-            <h4 class="text-2xl font-semibold">Inloggen of een account aanmaken</h4>
+            <h4 class="mb-4 text-2xl font-semibold">Inloggen of een account aanmaken</h4>
         </div>
         <div>
             <h5 class="mb-4 text-xl font-semibold">Nieuw hier?</h5>

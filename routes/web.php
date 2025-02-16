@@ -50,6 +50,7 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
     Route::get('/orders', \App\Livewire\Pages\Account\OrdersPage::class)->name('orders');
     Route::get('/reviews', \App\Livewire\Pages\Account\ReviewsPage::class)->name('reviews');
     Route::get('/details', \App\Livewire\Pages\Account\DetailsPage::class)->name('details');
+    Route::get('/address-book', \App\Livewire\Pages\Account\AddressBookPage::class)->name('address-book');
 });
 
 // Admin routes

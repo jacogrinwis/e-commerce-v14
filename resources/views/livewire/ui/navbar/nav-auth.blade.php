@@ -38,7 +38,7 @@
             dropdown-name="user-menu"
             class="w-fit divide-y divide-gray-100 text-sm text-gray-700"
         >
-            <div class="px-4 py-3 text-gray-900">
+            <div class="px-6 pb-3 pt-4 text-gray-900">
                 <div>{{ auth()->user()->name }}</div>
                 <div class="truncate font-semibold">{{ auth()->user()->email }}</div>
             </div>
@@ -47,8 +47,9 @@
                     <a
                         href="{{ route('account.dashboard') }}"
                         wire:navigate
-                        class="block px-4 py-2 hover:bg-gray-100"
+                        class="flex items-center gap-3 px-6 py-2 hover:bg-gray-100"
                     >
+                        <x-icons.gauge class="h-3.5 w-4" />
                         Overzicht dashboard
                     </a>
                 </li>
@@ -56,8 +57,9 @@
                     <a
                         href="{{ route('account.details') }}"
                         wire:navigate
-                        class="block px-4 py-2 hover:bg-gray-100"
+                        class="flex items-center gap-3 px-6 py-2 hover:bg-gray-100"
                     >
+                        <x-icons.user-circle class="h-4 w-4" />
                         Accountgegevens
                     </a>
                 </li>
@@ -65,8 +67,9 @@
                     <a
                         href="{{ route('account.orders') }}"
                         wire:navigate
-                        class="block px-4 py-2 hover:bg-gray-100"
+                        class="flex items-center gap-3 px-6 py-2 hover:bg-gray-100"
                     >
+                        <x-icons.truck class="h-4 w-4" />
                         Mijn bestellingen
                     </a>
                 </li>
@@ -74,9 +77,18 @@
                     <a
                         href="{{ route('account.favorites') }}"
                         wire:navigate
-                        class="block px-4 py-2 hover:bg-gray-100"
+                        class="flex items-center gap-3 px-6 py-2 hover:bg-gray-100"
                     >
+                        <x-icons.hart class="h-4 w-4 fill-black" />
                         Verlanglijstje
+                    </a>
+                </li>
+                <li><a
+                        href="{{ route('account.address-book') }}"
+                        class="flex items-center gap-3 px-6 py-2 hover:bg-gray-100"
+                    >
+                        <x-icons.address-book class="h-4 w-4 fill-black" />
+                        Adresboek
                     </a>
                 </li>
             </ul>
@@ -84,8 +96,9 @@
                 <a
                     href="{{ route('account.reviews') }}"
                     wire:navigate
-                    class="block px-4 py-2 hover:bg-gray-100"
+                    class="flex items-center gap-3 px-6 py-2 hover:bg-gray-100"
                 >
+                    <x-icons.star class="h-4 w-4" />
                     Geplaaste reviews
                 </a>
             </div>

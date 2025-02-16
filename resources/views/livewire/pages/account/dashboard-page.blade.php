@@ -3,11 +3,10 @@
         <x-breadcrumb />
     </div>
     @include('livewire.pages.account.partials.menu')
-    <main class="col-span-3">
+    <main class="col-span-3 space-y-2">
         <h1 class="mb-6 text-2xl font-semibold">Mijn account - Overzicht dashboard</h1>
         <h1>Welkom, {{ $user->name }}</h1>
         <p>Jouw rol: {{ $user->role->value }}</p>
-
         @if ($user->isAdmin())
             <p>Je bent een admin.</p>
         @elseif ($user->isEditor())
