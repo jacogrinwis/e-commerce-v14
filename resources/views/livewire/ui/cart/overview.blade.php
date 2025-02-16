@@ -34,11 +34,11 @@
             <span>Subtotaal</span>
             <span>{{ formatPrice($subtotal) }}</span>
         </div>
-        <p class="text-sm text-gray-500">Verzendkosten en belastingen worden berekend bij het afrekenen.</p>
+        <p class="mt-2 text-sm text-gray-500">Verzendkosten en belastingen worden berekend bij het afrekenen.</p>
         <button class="btn btn-primary mb-2 mt-4 w-full">Bestellen</button>
         <a
             href="{{ route('cart.shopping-cart') }}"
-            class="btn btn-secondary mb-2 mt-4 block text-center"
+            class="btn btn-secondary mb-2 block text-center"
         >
             Wijzig winkelwagen
         </a>

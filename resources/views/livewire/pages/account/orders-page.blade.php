@@ -47,7 +47,11 @@
                                     <p class="text-sm text-gray-600">Aantal: {{ $item->quantity }}</p>
                                 </div>
                                 <div class="text-right">
-                                    <p class="font-medium">{{ formatPrice($item->price) }}</p>
+                                    @if ($item->product->discount_price > null)
+                                        <p class="font-medium">{{ formatPrice($item->product->discount_price) }}</p>
+                                    @else
+                                        <p class="font-medium">{{ formatPrice($item->price) }}</p>
+                                    @endif
                                     <p class="text-sm text-gray-600">Per stuk</p>
                                 </div>
                             </div>
