@@ -36,15 +36,6 @@ Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/checkout/confirmation/{order}', \App\Livewire\Pages\Cart\CheckoutConfirmationPage::class)->name('checkout.confirmation');
 });
 
-// User routes
-// Route::prefix('user')->name('user.')->middleware('auth')->group(function () {
-//     Route::get('/dashboard', \App\Livewire\Pages\User\DashboardPage::class)->name('dashboard');
-//     Route::get('/favorites', \App\Livewire\Pages\User\FavoritesPage::class)->name('favorites');
-//     Route::get('/orders', \App\Livewire\Pages\User\OrdersPage::class)->name('orders');
-//     Route::get('/reviews', \App\Livewire\Pages\User\ReviewsPage::class)->name('reviews');
-//     Route::get('/details', \App\Livewire\Pages\User\DetailsPage::class)->name('details');
-// });
-
 // Account routes
 Route::prefix('account')->name('account.')->middleware('auth')->group(function () {
     Route::get('/dashboard', \App\Livewire\Pages\Account\DashboardPage::class)->name('dashboard');
