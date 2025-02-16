@@ -31,7 +31,8 @@ Route::prefix('products')->name('products.')->group(function () {
 });
 
 Route::prefix('cart')->name('cart.')->group(function () {
-    Route::get('/shopping=cart', \App\Livewire\Pages\Cart\ShoppingCartPage::class)->name('shopping-cart');
+    Route::get('/shopping-cart', \App\Livewire\Pages\Cart\ShoppingCartPage::class)->name('shopping-cart');
+    Route::get('/checkout', \App\Livewire\Pages\Cart\CheckoutPage::class)->name('checkout');
 });
 
 // User routes

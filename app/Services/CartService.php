@@ -149,12 +149,12 @@ class CartService
 
     /**
      * Berekent het eindtotaal van de winkelwagen
-     * Dit is het subtotaal na aftrek van eventuele kortingen
+     * Dit is het subtotaal minus de totale korting
      * Kan later uitgebreid worden met verzendkosten of andere toeslagen
      */
     public function getTotal()
     {
-        return $this->getSubtotal();
+        return $this->getSubtotal() - $this->getDiscount();
     }
 
     /**

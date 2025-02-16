@@ -18,10 +18,10 @@
                     </div>
                     <div class="flex shrink-0 flex-col text-right">
                         @if ($item['product']->discount > null)
-                            <div class="text-sm font-bold line-through">
+                            <div class="text-sm line-through">
                                 {{ formatPrice($item['product']->price * $item['quantity']) }}
                             </div>
-                            <div class="text-sm font-bold text-green-500">
+                            <div class="text-sm font-bold text-red-600">
                                 {{ formatPrice($item['product']->discount_price * $item['quantity']) }}
                             </div>
                         @else
@@ -39,12 +39,36 @@
                 </div>
             @endforeach
         </div>
-        <div class="flex justify-between border-t border-gray-200 py-4 text-lg font-semibold">
+        {{-- <div class="flex justify-between border-t border-gray-200 py-4 text-lg font-semibold">
             <span>Subtotaal</span>
             <span>{{ formatPrice($subtotal) }}</span>
+        </div> --}}
+        <div class="space-y-4 border-t border-gray-200 pt-4">
+            <div class="space-y-2">
+                <dl class="flex justify-between">
+                    <dt class="text-base">Subtotaal</dt>
+                    <dd class="text-base font-medium">{{ formatPrice($subtotal) }}</dd>
+                </dl>
+                @if ($discount > 0)
+                    <dl class="flex justify-between text-red-600">
+                        <dt class="text-base font-medium">Korting</dt>
+                        <dd class="text-base font-bold">-{{ formatPrice($discount) }}</dd>
+                    </dl>
+                @endif
+            </div>
+            <dl class="flex justify-between border-t border-gray-200 pt-2">
+                <dt class="text-base font-semibold">Totaal</dt>
+                <dd class="text-lg font-bold">{{ formatPrice($total) }}</dd>
+            </dl>
         </div>
         <p class="mt-2 text-sm text-gray-500">Verzendkosten worden berekend bij het afrekenen.</p>
-        <button class="btn btn-primary mb-2 mt-4 w-full">Bestellen</button>
+        {{-- <button class="btn btn-primary mb-2 mt-4 w-full">Bestellen</button> --}}
+        <a
+            href="{{ route('cart.checkout') }}"
+            class="btn btn-primary mb-2 mt-4 block text-center"
+        >
+            Bestellen
+        </a>
         <a
             href="{{ route('cart.shopping-cart') }}"
             class="btn btn-secondary mb-2 block text-center"

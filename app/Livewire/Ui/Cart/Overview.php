@@ -32,6 +32,8 @@ class Overview extends Component
         return view('livewire.ui.cart.overview', [
             'cartItems' => Cart::getCartItems(),
             'subtotal' => Cart::getSubtotal(),
+            'discount' => Cart::getDiscount(),
+            'total' => Cart::getTotal(),
             'itemCount' => Cart::getItemCount(),
         ]);
     }

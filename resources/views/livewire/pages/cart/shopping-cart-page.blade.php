@@ -2,8 +2,8 @@
     <div>
         <h4 class="mb-4 text-2xl font-semibold">Winkelwagen</h4>
     </div>
-    <div class="grid grid-cols-4 gap-x-16">
-        <div class="col-span-3">
+    <div class="xgrid-cols-4 grid grid-cols-12 gap-x-6">
+        <div class="col-span-8">
             @if ($itemCount > 0)
                 <div class="space-y-6">
                     @foreach ($cartItems as $item)
@@ -72,14 +72,11 @@
                                         </button>
                                     </div>
                                     <div class="w-32 text-end">
-                                        {{-- <p class="text-base font-bold">
-                                            {{ formatPrice($item['product']->price * $item['quantity']) }}
-                                        </p> --}}
                                         @if ($item['product']->discount > 0)
                                             <p class="text-sm text-gray-500 line-through">
                                                 {{ formatPrice($item['product']->price * $item['quantity']) }}
                                             </p>
-                                            <p class="text-base font-bold text-green-500">
+                                            <p class="text-base font-bold text-red-600">
                                                 {{ formatPrice($item['product']->discounted_price * $item['quantity']) }}
                                             </p>
                                         @else
@@ -96,8 +93,8 @@
             @else
             @endif
         </div>
-        <div class="col-span-1 h-fit rounded-md border border-gray-200 p-6 shadow">
-            <h4 class="mb-4 text-2xl font-semibold">Besteloverzicht</h4>
+        <div class="col-span-4 h-fit rounded-md border border-gray-200 p-6 shadow">
+            <h4 class="mb-4 text-xl font-semibold">Besteloverzicht</h4>
             <div class="space-y-4">
                 <div class="space-y-2">
                     <dl class="flex justify-between">
@@ -105,7 +102,7 @@
                         <dd class="text-base font-medium">{{ formatPrice($subtotal) }}</dd>
                     </dl>
                     @if ($discount > 0)
-                        <dl class="flex justify-between text-green-500">
+                        <dl class="flex justify-between text-red-600">
                             <dt class="text-base font-medium">Korting</dt>
                             <dd class="text-base font-bold">-{{ formatPrice($discount) }}</dd>
                         </dl>
@@ -118,7 +115,7 @@
             </div>
             <p class="my-4 text-sm text-gray-500">Verzendkosten worden berekend bij het afrekenen.</p>
             <a
-                href="#"
+                href="{{ route('cart.checkout') }}"
                 class="btn btn-primary mt-6 block text-center"
             >
                 Doorgaan met bestellen
