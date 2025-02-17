@@ -23,6 +23,8 @@ class CheckoutPage extends Component
         'city' => '',
         'phone' => ''
     ];
+    public $selectedAddressId = null;
+    public $addresses;
     public $notes;
 
     protected $rules = [
@@ -45,7 +47,9 @@ class CheckoutPage extends Component
         }
 
         if (Auth::check()) {
-            $defaultAddress = Auth::user()->addresses()->where('is_default', true)->first();
+            $this->addresses = Auth::user()->addresses()->get();
+            $defaultAddress = $this->addresses->where('is_default', true)->first();
+            $this->selectedAddressId = $defaultAddress?->id;
 
             $this->shippingAddress = [
                 'name' => Auth::user()->name,
@@ -54,10 +58,32 @@ class CheckoutPage extends Component
                 'house_number' => $defaultAddress?->house_number ?? '',
                 'postal_code' => $defaultAddress?->postal_code ?? '',
                 'city' => $defaultAddress?->city ?? '',
-                'country' => $defaultAddress?->country ?? '',
-                'phone' => $defaultAddress?->phone ?? ''
+                'phone' => $defaultAddress?->phone ?? '',
+                'country' => $defaultAddress?->country ?? ''
             ];
         }
+    }
+
+    public function updatedSelectedAddressId($value)
+    {
+        if ($value) {
+            $address = $this->addresses->find($value);
+            $this->shippingAddress = [
+                'name' => $address->name,
+                'email' => $address->email,
+                'street' => $address->street,
+                'house_number' => $address->house_number,
+                'postal_code' => $address->postal_code,
+                'city' => $address->city,
+                'phone' => $address->phone,
+                'country' => $address->country
+            ];
+        }
+    }
+
+    public function updatedShippingMethod()
+    {
+        $this->dispatch('shipping-method-changed');
     }
 
     public function createOrder()

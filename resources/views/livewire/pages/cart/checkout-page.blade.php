@@ -8,14 +8,17 @@
                 <h4 class="mb-4 text-2xl font-semibold">Jouw bezorging en betaling</h4>
                 <p class="mb-4 text-sm text-gray-500">Bekijk jouw gegevens en voltooi je bestelling.</p>
             </div>
-            <div class="col-span-8 space-y-6">
+            <div
+                class="col-span-8 space-y-6"
+                x-data="{ shippingMethod: @entangle('shippingMethod') }"
+            >
                 <div class="rounded-lg border border-gray-200 bg-white p-6">
                     <h2 class="mb-4 text-xl font-semibold">Verzendmethode</h2>
                     <div class="space-y-4 text-sm">
                         <label class="flex cursor-pointer items-center gap-3">
                             <input
                                 type="radio"
-                                wire:model="shippingMethod"
+                                wire:model.live="shippingMethod"
                                 value="pickup"
                                 class="h-4 w-4"
                             >
@@ -24,7 +27,7 @@
                         <label class="flex cursor-pointer items-center gap-3">
                             <input
                                 type="radio"
-                                wire:model="shippingMethod"
+                                wire:model.live="shippingMethod"
                                 value="postnl-standard"
                                 class="h-4 w-4"
                             >
@@ -33,7 +36,7 @@
                         <label class="flex cursor-pointer items-center gap-3">
                             <input
                                 type="radio"
-                                wire:model="shippingMethod"
+                                wire:model.live="shippingMethod"
                                 value="postnl-track-trace"
                                 class="h-4 w-4"
                             >
@@ -42,7 +45,7 @@
                         <label class="flex cursor-pointer items-center gap-3">
                             <input
                                 type="radio"
-                                wire:model="shippingMethod"
+                                wire:model.live="shippingMethod"
                                 value="dhl-standard"
                                 class="h-4 w-4"
                             >
@@ -51,7 +54,7 @@
                         <label class="flex cursor-pointer items-center gap-3">
                             <input
                                 type="radio"
-                                wire:model="shippingMethod"
+                                wire:model.live="shippingMethod"
                                 value="dhl-track-trace"
                                 class="h-4 w-4"
                             >
@@ -60,7 +63,7 @@
                         <label class="flex cursor-pointer items-center gap-3">
                             <input
                                 type="radio"
-                                wire:model="shippingMethod"
+                                wire:model.live="shippingMethod"
                                 value="homerr"
                                 class="h-4 w-4"
                             >
@@ -68,90 +71,123 @@
                         </label>
                     </div>
                 </div>
-                @if ($shippingMethod !== 'pickup')
-                    <div class="rounded-lg border border-gray-200 bg-white p-6">
-                        <h2 class="mb-4 text-xl font-semibold">Verzendadres</h2>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="mb-1 block text-sm">Naam</label>
-                                <input
-                                    type="text"
-                                    wire:model="shippingAddress.name"
-                                    class="input-text w-full"
-                                >
-                                @error('shippingAddress.name')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label class="mb-1 block text-sm">E-mail</label>
-                                <input
-                                    type="email"
-                                    wire:model="shippingAddress.email"
-                                    class="input-text w-full"
-                                >
-                                @error('shippingAddress.email')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label class="mb-1 block text-sm">Straat</label>
-                                <input
-                                    type="text"
-                                    wire:model="shippingAddress.street"
-                                    class="input-text w-full"
-                                >
-                                @error('shippingAddress.street')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label class="mb-1 block text-sm">Huisnummer</label>
-                                <input
-                                    type="text"
-                                    wire:model="shippingAddress.house_number"
-                                    class="input-text w-full"
-                                >
-                                @error('shippingAddress.house_number')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label class="mb-1 block text-sm">Postcode</label>
-                                <input
-                                    type="text"
-                                    wire:model="shippingAddress.postal_code"
-                                    class="input-text w-full"
-                                >
-                                @error('shippingAddress.postal_code')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label class="mb-1 block text-sm">Plaats</label>
-                                <input
-                                    type="text"
-                                    wire:model="shippingAddress.city"
-                                    class="input-text w-full"
-                                >
-                                @error('shippingAddress.city')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label class="mb-1 block text-sm">Telefoon</label>
-                                <input
-                                    type="tel"
-                                    wire:model="shippingAddress.phone"
-                                    class="input-text w-full"
-                                >
-                                @error('shippingAddress.phone')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
-                                @enderror
-                            </div>
+
+                <div
+                    x-show="shippingMethod !== 'pickup'"
+                    class="rounded-lg border border-gray-200 bg-white p-6"
+                >
+                    <h2 class="mb-4 text-xl font-semibold">Verzendadres</h2>
+
+                    @auth
+                        <div class="mb-6">
+                            <label class="mb-2 block text-sm font-medium">Kies een opgeslagen adres</label>
+                            <select
+                                wire:model.live="selectedAddressId"
+                                class="input-text w-full"
+                            >
+                                <option value="">Kies een adres</option>
+                                @foreach ($addresses as $address)
+                                    <option value="{{ $address->id }}">
+                                        {{ $address->name }} - {{ $address->street }} {{ $address->house_number }},
+                                        {{ $address->city }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endauth
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="mb-1 block text-sm">Naam</label>
+                            <input
+                                type="text"
+                                wire:model="shippingAddress.name"
+                                class="input-text w-full"
+                            >
+                            @error('shippingAddress.name')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm">E-mail</label>
+                            <input
+                                type="email"
+                                wire:model="shippingAddress.email"
+                                class="input-text w-full"
+                            >
+                            @error('shippingAddress.email')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm">Straat</label>
+                            <input
+                                type="text"
+                                wire:model="shippingAddress.street"
+                                class="input-text w-full"
+                            >
+                            @error('shippingAddress.street')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm">Huisnummer</label>
+                            <input
+                                type="text"
+                                wire:model="shippingAddress.house_number"
+                                class="input-text w-full"
+                            >
+                            @error('shippingAddress.house_number')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm">Postcode</label>
+                            <input
+                                type="text"
+                                wire:model="shippingAddress.postal_code"
+                                class="input-text w-full"
+                            >
+                            @error('shippingAddress.postal_code')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm">Plaats</label>
+                            <input
+                                type="text"
+                                wire:model="shippingAddress.city"
+                                class="input-text w-full"
+                            >
+                            @error('shippingAddress.city')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm">Land</label>
+                            <input
+                                type="text"
+                                wire:model="shippingAddress.country"
+                                class="input-text w-full"
+                            >
+                            @error('shippingAddress.country')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="mb-1 block text-sm">Telefoon</label>
+                            <input
+                                type="tel"
+                                wire:model="shippingAddress.phone"
+                                class="input-text w-full"
+                            >
+                            @error('shippingAddress.phone')
+                                <span class="text-sm text-red-600">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
-                @endif
+                </div>
+
                 <div class="rounded-lg border border-gray-200 bg-white p-6">
                     <h2 class="mb-4 text-xl font-semibold">Betaalmethode</h2>
                     <div class="space-y-4 text-sm">
@@ -218,12 +254,12 @@
                                     class="h-16 w-16 rounded-md object-cover"
                                 >
                                 <div class="flex-1">
-                                    <h4 class="xtruncate line-clamp-1 font-medium">{{ $item['product']->name }}</h4>
+                                    <h4 class="line-clamp-1 font-medium">{{ $item['product']->name }}</h4>
                                     <p class="text-sm text-gray-600">Aantal: {{ $item['quantity'] }}</p>
                                 </div>
                                 <div class="text-right">
                                     @if ($item['product']->discount > 0)
-                                        <p class="slashed-text text-sm text-gray-500">
+                                        <p class="text-sm text-gray-500 line-through">
                                             {{ formatPrice($item['product']->price * $item['quantity']) }}
                                         </p>
                                         <p class="font-medium text-red-600">
@@ -245,12 +281,12 @@
                             <span>{{ formatPrice($subtotal) }}</span>
                         </div>
                         @if ($discount > 0)
-                            <div class="flex justify-between font-semibold text-red-600">
+                            <div class="flex justify-between text-red-600">
                                 <span>Korting</span>
                                 <span>-{{ formatPrice($discount) }}</span>
                             </div>
                         @endif
-                        @if ($shippingMethod === 'delivery')
+                        @if ($shippingMethod !== 'pickup')
                             <div class="flex justify-between">
                                 <span>Verzendkosten</span>
                                 <span>€4,95</span>
@@ -258,7 +294,7 @@
                         @endif
                         <div class="flex justify-between border-t border-gray-200 pt-2 text-lg font-bold">
                             <span>Totaal</span>
-                            <span>{{ formatPrice($total + ($shippingMethod === 'delivery' ? 4.95 : 0)) }}</span>
+                            <span>{{ formatPrice($total + ($shippingMethod !== 'pickup' ? 4.95 : 0)) }}</span>
                         </div>
                     </div>
 
