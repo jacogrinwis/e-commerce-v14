@@ -37,6 +37,30 @@
                         @enderror
                     </div>
 
+                    <div>
+                        <label class="mb-1 block text-sm font-medium">Email</label>
+                        <input
+                            type="email"
+                            wire:model="email"
+                            class="input-text w-full"
+                        >
+                        @error('email')
+                            <span class="mt-1 text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label class="mb-1 block text-sm font-medium">Telefoon</label>
+                        <input
+                            type="tel"
+                            wire:model="phone"
+                            class="input-text w-full"
+                        >
+                        @error('phone')
+                            <span class="mt-1 text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <div class="flex gap-4">
                         <div class="grow">
                             <label class="mb-1 block text-sm font-medium">Straat</label>

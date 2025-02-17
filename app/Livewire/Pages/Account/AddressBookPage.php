@@ -13,6 +13,8 @@ class AddressBookPage extends Component
     public $editingAddress = null;
 
     public $name = '';
+    public $email = '';
+    public $phone = '';
     public $street = '';
     public $house_number = '';
     public $postal_code = '';
@@ -21,10 +23,12 @@ class AddressBookPage extends Component
 
     protected $rules = [
         'name' => 'required|min:2',
+        'email' => 'required|email',
         'street' => 'required|min:2',
         'house_number' => 'required',
         'postal_code' => 'required',
         'city' => 'required|min:2',
+        'phone' => 'required',
     ];
 
     public function mount()
@@ -64,24 +68,41 @@ class AddressBookPage extends Component
             Auth::user()->addresses()->update(['is_default' => false]);
         }
 
+        // if ($this->editingAddress) {
+        //     $this->editingAddress->update([
+        //         'name' => $this->name,
+        //         'street' => $this->street,
+        //         'house_number' => $this->house_number,
+        //         'postal_code' => $this->postal_code,
+        //         'city' => $this->city,
+        //         'is_default' => $this->is_default,
+        //     ]);
+        // } else {
+        //     Auth::user()->addresses()->create([
+        //         'name' => $this->name,
+        //         'street' => $this->street,
+        //         'house_number' => $this->house_number,
+        //         'postal_code' => $this->postal_code,
+        //         'city' => $this->city,
+        //         'is_default' => $this->is_default,
+        //     ]);
+        // }
+
+        $addressData = [
+            'name' => $this->name,
+            'email' => $this->email,
+            'street' => $this->street,
+            'house_number' => $this->house_number,
+            'postal_code' => $this->postal_code,
+            'city' => $this->city,
+            'phone' => $this->phone,
+            'is_default' => $this->is_default,
+        ];
+
         if ($this->editingAddress) {
-            $this->editingAddress->update([
-                'name' => $this->name,
-                'street' => $this->street,
-                'house_number' => $this->house_number,
-                'postal_code' => $this->postal_code,
-                'city' => $this->city,
-                'is_default' => $this->is_default,
-            ]);
+            $this->editingAddress->update($addressData);
         } else {
-            Auth::user()->addresses()->create([
-                'name' => $this->name,
-                'street' => $this->street,
-                'house_number' => $this->house_number,
-                'postal_code' => $this->postal_code,
-                'city' => $this->city,
-                'is_default' => $this->is_default,
-            ]);
+            Auth::user()->addresses()->create($addressData);
         }
 
         $this->showForm = false;
