@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                @if ($shippingMethod === 'delivery')
+                {{-- @if ($shippingMethod === 'delivery')
                     <div class="rounded-lg border border-gray-200 bg-white p-6">
                         <h2 class="mb-4 text-xl font-semibold">Verzendadres</h2>
                         <div class="space-y-4">
@@ -78,7 +78,7 @@
                                 <input
                                     type="text"
                                     wire:model="shippingAddress.street"
-                                    class="input"
+                                    class="input-text w-full"
                                 >
                                 @error('shippingAddress.street')
                                     <span class="text-sm text-red-600">{{ $message }}</span>
@@ -89,7 +89,7 @@
                                 <input
                                     type="text"
                                     wire:model="shippingAddress.postal_code"
-                                    class="input"
+                                    class="input-text w-full"
                                 >
                                 @error('shippingAddress.postal_code')
                                     <span class="text-sm text-red-600">{{ $message }}</span>
@@ -100,9 +100,94 @@
                                 <input
                                     type="text"
                                     wire:model="shippingAddress.city"
-                                    class="input"
+                                    class="input-text w-full"
                                 >
                                 @error('shippingAddress.city')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                @endif --}}
+
+                @if ($shippingMethod !== 'pickup')
+                    <div class="rounded-lg border border-gray-200 bg-white p-6">
+                        <h2 class="mb-4 text-xl font-semibold">Verzendadres</h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="mb-1 block text-sm">Naam</label>
+                                <input
+                                    type="text"
+                                    wire:model="shippingAddress.name"
+                                    class="input-text w-full"
+                                >
+                                @error('shippingAddress.name')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm">E-mail</label>
+                                <input
+                                    type="email"
+                                    wire:model="shippingAddress.email"
+                                    class="input-text w-full"
+                                >
+                                @error('shippingAddress.email')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm">Straat</label>
+                                <input
+                                    type="text"
+                                    wire:model="shippingAddress.street"
+                                    class="input-text w-full"
+                                >
+                                @error('shippingAddress.street')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm">Huisnummer</label>
+                                <input
+                                    type="text"
+                                    wire:model="shippingAddress.house_number"
+                                    class="input-text w-full"
+                                >
+                                @error('shippingAddress.house_number')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm">Postcode</label>
+                                <input
+                                    type="text"
+                                    wire:model="shippingAddress.postal_code"
+                                    class="input-text w-full"
+                                >
+                                @error('shippingAddress.postal_code')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm">Plaats</label>
+                                <input
+                                    type="text"
+                                    wire:model="shippingAddress.city"
+                                    class="input-text w-full"
+                                >
+                                @error('shippingAddress.city')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div>
+                                <label class="mb-1 block text-sm">Telefoon</label>
+                                <input
+                                    type="tel"
+                                    wire:model="shippingAddress.phone"
+                                    class="input-text w-full"
+                                >
+                                @error('shippingAddress.phone')
                                     <span class="text-sm text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>

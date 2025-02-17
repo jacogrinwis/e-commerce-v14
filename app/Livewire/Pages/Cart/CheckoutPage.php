@@ -14,15 +14,27 @@ class CheckoutPage extends Component
 {
     public $shippingMethod = 'pickup'; // pickup or delivery
     public $paymentMethod = 'banktransfer'; // banktransfer, tikkie, paypal
-    public $shippingAddress = [];
+    public $shippingAddress = [
+        'name' => '',
+        'email' => '',
+        'street' => '',
+        'house_number' => '',
+        'postal_code' => '',
+        'city' => '',
+        'phone' => ''
+    ];
     public $notes;
 
     protected $rules = [
-        'shippingMethod' => 'required|in:pickup,delivery',
-        'paymentMethod' => 'required|in:banktransfer,tikkie,paypal',
-        'shippingAddress.street' => 'required_if:shippingMethod,delivery',
-        'shippingAddress.city' => 'required_if:shippingMethod,delivery',
-        'shippingAddress.postal_code' => 'required_if:shippingMethod,delivery',
+        'shippingMethod' => 'required|in:pickup,postnl-standard,postnl-track-trace,dhl-standard,dhl-track-trace,homerr',
+        'paymentMethod' => 'required|in:banktransfer,tikkie,paypal,contant',
+        'shippingAddress.name' => 'required_unless:shippingMethod,pickup',
+        'shippingAddress.email' => 'required_unless:shippingMethod,pickup|email',
+        'shippingAddress.street' => 'required_unless:shippingMethod,pickup',
+        'shippingAddress.house_number' => 'required_unless:shippingMethod,pickup',
+        'shippingAddress.postal_code' => 'required_unless:shippingMethod,pickup',
+        'shippingAddress.city' => 'required_unless:shippingMethod,pickup',
+        'shippingAddress.phone' => 'required_unless:shippingMethod,pickup'
     ];
 
     public function mount()
@@ -33,9 +45,13 @@ class CheckoutPage extends Component
 
         if (Auth::check()) {
             $this->shippingAddress = [
+                'name' => Auth::user()->name,
+                'email' => Auth::user()->email,
                 'street' => Auth::user()->street,
-                'city' => Auth::user()->city,
+                'house_number' => Auth::user()->house_number,
                 'postal_code' => Auth::user()->postal_code,
+                'city' => Auth::user()->city,
+                'phone' => Auth::user()->phone
             ];
         }
     }
@@ -44,19 +60,21 @@ class CheckoutPage extends Component
     {
         $this->validate();
 
-        $order = Order::create([
-            'user_id' => Auth::id(),
+        $orderData = [
+            'user_id' => Auth::id() ?? null,  // Make user_id nullable in migration
             'order_number' => 'ORD-' . strtoupper(Str::random(8)),
             'status' => 'pending',
             'shipping_method' => $this->shippingMethod,
             'payment_method' => $this->paymentMethod,
-            'shipping_address' => $this->shippingMethod === 'delivery' ? $this->shippingAddress : null,
-            'shipping_cost' => $this->shippingMethod === 'delivery' ? 4.95 : 0,
+            'shipping_address' => $this->shippingMethod !== 'pickup' ? $this->shippingAddress : null,
+            'shipping_cost' => $this->shippingMethod !== 'pickup' ? 4.95 : 0,
             'subtotal' => Cart::getSubtotal(),
             'discount' => Cart::getDiscount(),
-            'total_amount' => Cart::getTotal() + ($this->shippingMethod === 'delivery' ? 4.95 : 0),
+            'total_amount' => Cart::getTotal() + ($this->shippingMethod !== 'pickup' ? 4.95 : 0),
             'notes' => $this->notes,
-        ]);
+        ];
+
+        $order = Order::create($orderData);
 
         foreach (Cart::getCartItems() as $item) {
             $order->orderItems()->create([
