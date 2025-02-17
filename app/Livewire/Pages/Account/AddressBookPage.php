@@ -19,16 +19,18 @@ class AddressBookPage extends Component
     public $house_number = '';
     public $postal_code = '';
     public $city = '';
+    public $country = '';
     public $is_default = false;
 
     protected $rules = [
         'name' => 'required|min:2',
         'email' => 'required|email',
+        'phone' => 'required|numeric',
         'street' => 'required|min:2',
         'house_number' => 'required',
         'postal_code' => 'required',
         'city' => 'required|min:2',
-        'phone' => 'required',
+        'country' => 'required|min:2',
     ];
 
     public function mount()
@@ -52,10 +54,12 @@ class AddressBookPage extends Component
     {
         $this->editingAddress = $address;
         $this->name = $address->name;
+        $this->phone = $address->phone;
         $this->street = $address->street;
         $this->house_number = $address->house_number;
         $this->postal_code = $address->postal_code;
         $this->city = $address->city;
+        $this->country = $address->country;
         $this->is_default = $address->is_default;
         $this->showForm = true;
     }
@@ -68,26 +72,6 @@ class AddressBookPage extends Component
             Auth::user()->addresses()->update(['is_default' => false]);
         }
 
-        // if ($this->editingAddress) {
-        //     $this->editingAddress->update([
-        //         'name' => $this->name,
-        //         'street' => $this->street,
-        //         'house_number' => $this->house_number,
-        //         'postal_code' => $this->postal_code,
-        //         'city' => $this->city,
-        //         'is_default' => $this->is_default,
-        //     ]);
-        // } else {
-        //     Auth::user()->addresses()->create([
-        //         'name' => $this->name,
-        //         'street' => $this->street,
-        //         'house_number' => $this->house_number,
-        //         'postal_code' => $this->postal_code,
-        //         'city' => $this->city,
-        //         'is_default' => $this->is_default,
-        //     ]);
-        // }
-
         $addressData = [
             'name' => $this->name,
             'email' => $this->email,
@@ -95,6 +79,7 @@ class AddressBookPage extends Component
             'house_number' => $this->house_number,
             'postal_code' => $this->postal_code,
             'city' => $this->city,
+            'country' => $this->country,
             'phone' => $this->phone,
             'is_default' => $this->is_default,
         ];

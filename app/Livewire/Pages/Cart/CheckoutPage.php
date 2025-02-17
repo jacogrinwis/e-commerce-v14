@@ -34,6 +34,7 @@ class CheckoutPage extends Component
         'shippingAddress.house_number' => 'required_unless:shippingMethod,pickup',
         'shippingAddress.postal_code' => 'required_unless:shippingMethod,pickup',
         'shippingAddress.city' => 'required_unless:shippingMethod,pickup',
+        'shippingAddress.country' => 'required_unless:shippingMethod,pickup',
         'shippingAddress.phone' => 'required_unless:shippingMethod,pickup'
     ];
 
@@ -44,14 +45,17 @@ class CheckoutPage extends Component
         }
 
         if (Auth::check()) {
+            $defaultAddress = Auth::user()->addresses()->where('is_default', true)->first();
+
             $this->shippingAddress = [
                 'name' => Auth::user()->name,
                 'email' => Auth::user()->email,
-                'street' => Auth::user()->street,
-                'house_number' => Auth::user()->house_number,
-                'postal_code' => Auth::user()->postal_code,
-                'city' => Auth::user()->city,
-                'phone' => Auth::user()->phone
+                'street' => $defaultAddress?->street ?? '',
+                'house_number' => $defaultAddress?->house_number ?? '',
+                'postal_code' => $defaultAddress?->postal_code ?? '',
+                'city' => $defaultAddress?->city ?? '',
+                'country' => $defaultAddress?->country ?? '',
+                'phone' => $defaultAddress?->phone ?? ''
             ];
         }
     }

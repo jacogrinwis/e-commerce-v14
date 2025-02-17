@@ -111,6 +111,18 @@
                         </div>
                     </div>
 
+                    <div>
+                        <label class="mb-1 block text-sm font-medium">Land</label>
+                        <input
+                            type="text"
+                            wire:model="country"
+                            class="input-text w-full"
+                        >
+                        @error('country')
+                            <span class="mt-1 text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <label class="flex items-center gap-2">
                         <input
                             type="checkbox"

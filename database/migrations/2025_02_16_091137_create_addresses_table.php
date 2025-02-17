@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->string('email');
+            $table->string('phone');
             $table->string('street');
             $table->string('house_number');
             $table->string('postal_code');
             $table->string('city');
+            $table->string('country');
             $table->boolean('is_default')->default(false);
             $table->timestamps();
         });
