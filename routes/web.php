@@ -68,6 +68,5 @@ Route::prefix('editor')->name('editor.')->middleware(['auth', 'role:' . \App\Enu
 // });
 
 Route::get('/testmail', function () {
-    dd(config('services.resend.key'));
     Mail::to('jacogrinwis@gmail.com')->send(new TestMail());
 });

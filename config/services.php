@@ -25,7 +25,7 @@ return [
     ],
 
     'resend' => [
-        'key' => env('re_HoTR44yF_LzC14eqYSNDxJUusJdNK4kNs'),
+        'key' => env('RESEND_KEY'),
     ],
 
     'slack' => [
