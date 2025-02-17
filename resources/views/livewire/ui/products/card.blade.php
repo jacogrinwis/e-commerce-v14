@@ -43,8 +43,10 @@
             <div class="mb-2 grid h-14 grid-cols-2 gap-2">
                 <div class="grid items-end">
                     @if ($product->discount > 0)
-                        <p class="text-base text-gray-500 line-through">
-                            {{ formatPrice($product->price) }}
+                        <p>
+                            <span class="slashed-text text-base text-gray-600">
+                                {{ formatPrice($product->price) }}
+                            </span>
                         </p>
                         <p class="text-xl font-bold text-red-600">
                             {{ formatPrice($product->discount_price) }}

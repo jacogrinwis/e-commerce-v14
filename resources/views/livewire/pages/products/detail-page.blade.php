@@ -25,8 +25,10 @@
                 </div>
                 <div class="grid items-end">
                     @if ($product->discount > 0)
-                        <p class="text-xl text-gray-500 line-through">
-                            {{ formatPrice($product->price) }}
+                        <p>
+                            <span class="slashed-text text-xl text-gray-500">
+                                {{ formatPrice($product->price) }}
+                            </span>
                         </p>
                         <p class="text-3xl font-bold text-red-600">
                             {{ formatPrice($product->discount_price) }}

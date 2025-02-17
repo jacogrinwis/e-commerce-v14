@@ -18,8 +18,10 @@
                     </div>
                     <div class="flex shrink-0 flex-col text-right">
                         @if ($item['product']->discount > null)
-                            <div class="text-sm line-through">
-                                {{ formatPrice($item['product']->price * $item['quantity']) }}
+                            <div>
+                                <span class="slashed-text text-sm">
+                                    {{ formatPrice($item['product']->price * $item['quantity']) }}
+                                </span>
                             </div>
                             <div class="text-sm font-bold text-red-600">
                                 {{ formatPrice($item['product']->discount_price * $item['quantity']) }}

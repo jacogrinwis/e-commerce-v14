@@ -25,7 +25,7 @@
                             <input
                                 type="radio"
                                 wire:model="shippingMethod"
-                                value="delivery"
+                                value="postnl-standard"
                                 class="h-4 w-4"
                             >
                             <span>PostNL Standaard (€4.95)</span>
@@ -34,7 +34,7 @@
                             <input
                                 type="radio"
                                 wire:model="shippingMethod"
-                                value="delivery"
+                                value="postnl-track-trace"
                                 class="h-4 w-4"
                             >
                             <span>PostNL met track & trace (€4.95)</span>
@@ -43,7 +43,7 @@
                             <input
                                 type="radio"
                                 wire:model="shippingMethod"
-                                value="delivery"
+                                value="dhl-standard"
                                 class="h-4 w-4"
                             >
                             <span>DHL Standaard (€4.95)</span>
@@ -52,7 +52,7 @@
                             <input
                                 type="radio"
                                 wire:model="shippingMethod"
-                                value="delivery"
+                                value="dhl-track-trace"
                                 class="h-4 w-4"
                             >
                             <span>DHL met track & trace (€4.95)</span>
@@ -61,7 +61,7 @@
                             <input
                                 type="radio"
                                 wire:model="shippingMethod"
-                                value="delivery"
+                                value="homerr"
                                 class="h-4 w-4"
                             >
                             <span>Homerr (€4.95)</span>
@@ -181,7 +181,7 @@
                                 </div>
                                 <div class="text-right">
                                     @if ($item['product']->discount > 0)
-                                        <p class="text-sm text-gray-500 line-through">
+                                        <p class="slashed-text text-sm text-gray-500">
                                             {{ formatPrice($item['product']->price * $item['quantity']) }}
                                         </p>
                                         <p class="font-medium text-red-600">
@@ -203,7 +203,7 @@
                             <span>{{ formatPrice($subtotal) }}</span>
                         </div>
                         @if ($discount > 0)
-                            <div class="flex justify-between text-red-600">
+                            <div class="flex justify-between font-semibold text-red-600">
                                 <span>Korting</span>
                                 <span>-{{ formatPrice($discount) }}</span>
                             </div>

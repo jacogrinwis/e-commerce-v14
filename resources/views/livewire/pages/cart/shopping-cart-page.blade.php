@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="w-32 text-end">
                                         @if ($item['product']->discount > 0)
-                                            <p class="text-sm text-gray-500 line-through">
+                                            <p class="slashed-text text-sm text-gray-500">
                                                 {{ formatPrice($item['product']->price * $item['quantity']) }}
                                             </p>
                                             <p class="text-base font-bold text-red-600">
