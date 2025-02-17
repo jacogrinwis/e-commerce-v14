@@ -83,7 +83,7 @@
 
     .slashed-text::after {
         content: "";
-        @apply absolute left-0 top-1/2 w-full h-[1px] bg-current rotate-[-20deg];
+        @apply absolute left-0 top-1/2 w-full h-[1px] bg-current rotate-[-15deg];
     }
 }
 
