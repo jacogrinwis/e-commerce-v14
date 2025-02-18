@@ -87,3 +87,7 @@ Route::prefix('editor')->name('editor.')->middleware(['auth', 'role:EDITOR'])->g
 Route::prefix('lab')->name('lab.')->middleware(['auth', 'role:ADMIN'])->group(function () {
     route::get('stepper', \App\Livewire\Pages\Lab\StepperPage::class)->name('stepper');
 });
+
+Route::get('/testmail', function () {
+    Mail::to('jacogrinwis@gmail.com')->send(new TestMail());
+});

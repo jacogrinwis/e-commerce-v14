@@ -5,10 +5,8 @@ namespace App\Livewire\Pages\Cart;
 use App\Facades\Cart;
 use App\Models\Order;
 use Livewire\Component;
-use App\Mail\NewOrderMail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class CheckoutPage extends Component
 {
@@ -148,9 +146,6 @@ class CheckoutPage extends Component
                 'discount' => $item['product']->discount ?? 0,
             ]);
         }
-
-        // Verstuur bevestigingsmail
-        Mail::to('your@email.com')->send(new NewOrderMail($order));
 
         // Maak winkelwagen leeg
         Cart::clear();

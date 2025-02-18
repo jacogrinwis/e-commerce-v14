@@ -5,8 +5,11 @@ namespace App\Livewire\Pages\Auth;
 use App\Models\User;
 use App\Facades\Cart;
 use Livewire\Component;
+use App\Mail\NewUserRegisteredMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewUserNotificationMail;
 
 class RegisterPage extends Component
 {
@@ -32,6 +35,10 @@ class RegisterPage extends Component
         Auth::login($user);
 
         Cart::mergeGuestCartWithUserCart();
+
+        Mail::to($user->email)->send(new NewUserRegisteredMail($user));
+        Mail::to(config('mail.admin_address'))->send(new NewUserNotificationMail($user));
+
 
         return $this->redirect(route('account.dashboard'));
     }

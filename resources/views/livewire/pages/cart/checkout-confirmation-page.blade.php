@@ -1,4 +1,8 @@
-<div class="container">
+<div
+    x-data
+    x-init="setTimeout(() => window.location.href = '{{ route('home') }}', 3000)"
+    class="container"
+>
     <div class="mx-auto max-w-3xl text-center">
         <h1 class="mb-4 text-3xl font-bold">Bedankt voor je bestelling!</h1>
         <p class="mb-8 text-gray-600">Je bestelnummer is: #{{ $order->order_number }}</p>
