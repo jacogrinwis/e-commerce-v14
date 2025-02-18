@@ -6,10 +6,15 @@ use Spatie\Tags\Tag;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+/**
+ * Seeder voor product tags
+ * Vult de database met voorgedefinieerde tags voor productcategorisatie
+ */
 class TagSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Voert de database seeding uit
+     * Maakt standaard tags aan voor de webshop
      */
     public function run(): void
     {
@@ -36,7 +41,7 @@ class TagSeeder extends Seeder
         ];
 
         foreach ($tags as $tagName) {
-            Tag::create(['name' => $tagName]);
+            Tag::create(['name' => $tagName]); // Maak tag aan met Nederlandse naam
         }
     }
 }

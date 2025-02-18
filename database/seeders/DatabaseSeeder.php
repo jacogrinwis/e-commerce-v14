@@ -4,37 +4,32 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Color;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Category;
 use App\Models\Material;
 use Illuminate\Database\Seeder;
 
+/**
+ * Hoofdseeder voor de database
+ * Coördineert het uitvoeren van alle seeders in de juiste volgorde
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Voert alle database seeders uit
+     * Zorgt voor een complete initiële dataset
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        // Category::factory(20)->create();
-        // Color::factory(19)->create();
-        // Material::factory(20)->create();
-
         $this->call([
-            UserSeeder::class,
-            CategorySeeder::class,
-            ColorSeeder::class,
-            MaterialSeeder::class,
-            TagSeeder::class,
-            StockStatusSeeder::class,
-            ProductSeeder::class,
-            ProductImageSeeder::class,
+            UserSeeder::class,           // Gebruikers
+            CategorySeeder::class,       // Productcategorieën
+            ColorSeeder::class,          // Kleuren
+            MaterialSeeder::class,       // Materialen
+            TagSeeder::class,            // Tags
+            StockStatusSeeder::class,    // Voorraadstatussen
+            ProductSeeder::class,        // Producten
+            ProductImageSeeder::class,   // Productafbeeldingen
+            FavoriteSeeder::class,       // Favorieten
         ]);
     }
 }

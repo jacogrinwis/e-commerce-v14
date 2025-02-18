@@ -111,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    {{-- <div>
                         <label class="mb-1 block text-sm font-medium">Land</label>
                         <input
                             type="text"
@@ -121,7 +121,107 @@
                         @error('country')
                             <span class="mt-1 text-sm text-red-600">{{ $message }}</span>
                         @enderror
+                    </div> --}}
+
+                    {{-- <div
+                        x-data="{
+                            search: '',
+                            countries: [
+                                { code: 'NL', name: 'Nederland' },
+                                { code: 'BE', name: 'België' },
+                                { code: 'DE', name: 'Duitsland' },
+                                { code: 'F', name: 'Frankrijk' },
+                                { code: 'L', name: 'Luxemburg' },
+                                // Add more countries
+                            ],
+                            filteredCountries() {
+                                return this.countries.filter(country =>
+                                    country.name.toLowerCase().includes(this.search.toLowerCase())
+                                )
+                            }
+                        }"
+                        @click.away="open = false"
+                    >
+                        <label class="mb-1 block text-sm font-medium">Land</label>
+                        <div class="relative">
+                            <input
+                                type="text"
+                                x-model="search"
+                                wire:model="country"
+                                class="input-text w-full"
+                                @focus="$el.nextElementSibling.classList.remove('hidden')"
+                            >
+                            <div
+                                class="absolute z-10 mt-1 hidden w-full rounded-md border border-gray-200 bg-white shadow-lg">
+                                <template
+                                    x-for="country in filteredCountries()"
+                                    :key="country.code"
+                                >
+                                    <div
+                                        class="cursor-pointer px-4 py-2 hover:bg-gray-100"
+                                        x-text="country.name"
+                                        @click="search = country.name; $wire.set('country', country.name); $el.parentElement.classList.add('hidden')"
+                                    >
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        @error('country')
+                            <span class="mt-1 text-sm text-red-600">{{ $message }}</span>
+                        @enderror
+                    </div> --}}
+
+                    <div
+                        x-data="{
+                            search: '',
+                            open: false,
+                            countries: [
+                                { code: 'NL', name: 'Nederland' },
+                                { code: 'BE', name: 'België' },
+                                { code: 'DE', name: 'Duitsland' },
+                                { code: 'F', name: 'Frankrijk' },
+                                { code: 'L', name: 'Luxemburg' },
+                                { code: 'E', name: 'Spanje' },
+                            ],
+                            filteredCountries() {
+                                return this.countries.filter(country =>
+                                    country.name.toLowerCase().includes(this.search.toLowerCase())
+                                )
+                            }
+                        }"
+                        @click.away="open = false"
+                    >
+                        <label class="mb-1 block text-sm font-medium">Land</label>
+                        <div class="relative">
+                            <input
+                                type="text"
+                                x-model="search"
+                                wire:model="country"
+                                class="input-text w-full"
+                                @focus="open = true"
+                            >
+                            <div
+                                x-show="open"
+                                class="absolute z-10 mt-1 w-full rounded-md border border-gray-200 bg-white shadow-lg"
+                            >
+                                <template
+                                    x-for="country in filteredCountries()"
+                                    :key="country.code"
+                                >
+                                    <div
+                                        class="cursor-pointer px-4 py-2 hover:bg-gray-100"
+                                        x-text="country.name"
+                                        @click="search = country.name; $wire.set('country', country.name); open = false"
+                                    >
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        @error('country')
+                            <span class="mt-1 text-sm text-red-600">{{ $message }}</span>
+                        @enderror
                     </div>
+
 
                     <label class="flex items-center gap-2">
                         <input
@@ -157,10 +257,11 @@
                             Standaard adres
                         </span>
                     @endif
-                    <h3 class="font-medium">{{ $address->name }}</h3>
+                    <h3 class="mb-1 font-medium">{{ $address->name }}</h3>
                     <p class="text-gray-600">
                         {{ $address->street }} {{ $address->house_number }}<br>
-                        {{ $address->postal_code }} {{ $address->city }}
+                        {{ $address->postal_code }} {{ $address->city }}<br>
+                        {{ $address->country }}
                     </p>
                     <div class="mt-4 flex gap-2">
                         <button

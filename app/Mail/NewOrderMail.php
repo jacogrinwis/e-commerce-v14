@@ -11,20 +11,26 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
+/**
+ * Mailable klasse voor het versturen van nieuwe bestelling notificaties
+ * Deze e-mail wordt verzonden wanneer er een nieuwe bestelling is geplaatst
+ */
 class NewOrderMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
-     * Create a new message instance.
+     * Maakt een nieuwe instantie van de mail aan
+     * 
+     * @param Order $order De bestelling waarvoor de mail wordt verstuurd
      */
-    public function __construct(public Order $order)
-    {
-        //
-    }
+    public function __construct(public Order $order) {}
 
     /**
-     * Get the message envelope.
+     * Definieert de envelope van het e-mailbericht
+     * Stelt het onderwerp en de afzender in
+     * 
+     * @return Envelope
      */
     public function envelope(): Envelope
     {
@@ -35,7 +41,10 @@ class NewOrderMail extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Definieert de inhoud van het e-mailbericht
+     * Koppelt de view en geeft de benodigde data door
+     * 
+     * @return Content
      */
     public function content(): Content
     {
@@ -46,9 +55,9 @@ class NewOrderMail extends Mailable
     }
 
     /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * Definieert eventuele bijlagen voor het e-mailbericht
+     * 
+     * @return array Lijst met bijlagen
      */
     public function attachments(): array
     {

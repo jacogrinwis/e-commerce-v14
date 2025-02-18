@@ -7,10 +7,15 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+/**
+ * Seeder voor gebruikers
+ * Maakt de standaard gebruikersaccounts aan met verschillende rollen
+ */
 class UserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Voert de database seeding uit
+     * Creëert admin, editor en standaard gebruiker accounts
      */
     public function run(): void
     {

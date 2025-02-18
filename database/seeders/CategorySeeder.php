@@ -7,10 +7,15 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+/**
+ * Seeder voor productcategorieën
+ * Vult de database met voorgedefinieerde categorieën
+ */
 class CategorySeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Voert de database seeding uit
+     * Maakt standaard categorieën aan voor de webshop
      */
     public function run(): void
     {
@@ -31,8 +36,8 @@ class CategorySeeder extends Seeder
 
         foreach ($categories as $category) {
             Category::create([
-                'name' => $category,
-                'slug' => Str::slug($category),
+                'name' => $category,              // Categorienaam
+                'slug' => Str::slug($category),   // URL-vriendelijke naam
             ]);
         }
     }

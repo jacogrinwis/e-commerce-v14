@@ -6,15 +6,18 @@ use App\Models\Color;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+/**
+ * Seeder voor kleuren
+ * Vult de database met voorgedefinieerde kleuren en hun Tailwind CSS equivalenten
+ */
 class ColorSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Voert de database seeding uit
+     * Maakt standaard kleuren aan met bijbehorende Tailwind klassen
      */
     public function run(): void
     {
-        // Color::factory(20)->create();
-
         $colors = [
             ['name' => 'Leisteen', 'slug' => 'leisteen', 'tailwind_color' => 'slate'],
             ['name' => 'Grijs', 'slug' => 'grijs', 'tailwind_color' => 'gray'],
@@ -44,9 +47,9 @@ class ColorSeeder extends Seeder
 
         foreach ($colors as $color) {
             Color::create([
-                'name' => $color['name'],
-                'slug' => $color['slug'],
-                'tailwind_color' => $color['tailwind_color']
+                'name' => $color['name'],              // Nederlandse kleurnaam
+                'slug' => $color['slug'],              // URL-vriendelijke naam
+                'tailwind_color' => $color['tailwind_color'] // Bijbehorende Tailwind klasse
             ]);
         }
     }

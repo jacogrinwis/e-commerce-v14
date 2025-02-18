@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\UserRole;
 use App\Models\Product;
 use App\Models\Favorite;
@@ -12,76 +11,47 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-
 /**
+ * Model voor gebruikers
+ * Centraal model voor alle gebruikersgegevens en authenticatie
  * 
- *
- * @property int $id
- * @property string $name
- * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property UserRole $role
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $favoriteProducts
- * @property-read int|null $favorite_products_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Favorite> $favorites
- * @property-read int|null $favorites_count
- * @property-read \App\Models\TFactory|null $use_factory
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read int|null $notifications_count
- * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRole($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
- * @mixin \Eloquent
+ * Database eigenschappen:
+ * @property int $id Unieke identifier
+ * @property string $name Naam van de gebruiker
+ * @property string $email E-mailadres
+ * @property \Illuminate\Support\Carbon|null $email_verified_at Datum van e-mailverificatie
+ * @property string $password Gehashed wachtwoord
+ * @property string|null $remember_token Token voor "onthoud mij" functionaliteit
+ * @property UserRole $role Gebruikersrol (ADMIN, EDITOR, USER)
+ * 
+ * Relaties:
+ * @property-read \Illuminate\Database\Eloquent\Collection<Product> $favoriteProducts Favoriete producten
+ * @property-read \Illuminate\Database\Eloquent\Collection<Favorite> $favorites Favorieten
  */
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
+     * Velden die massaal toegewezen kunnen worden
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-    ];
-
-    protected $casts = [
-        'role' => UserRole::class,
+        'name',     // Gebruikersnaam
+        'email',    // E-mailadres
+        'password', // Wachtwoord
+        'role',     // Gebruikersrol
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
+     * Velden die verborgen moeten blijven bij serialisatie
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password',       // Wachtwoord
+        'remember_token', // Remember me token
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Type casting voor attributen
      */
     protected function casts(): array
     {
@@ -92,41 +62,65 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Controleert of gebruiker een admin is
+     */
     public function isAdmin(): bool
     {
         return $this->role === UserRole::ADMIN;
     }
 
+    /**
+     * Controleert of gebruiker een editor is
+     */
     public function isEditor(): bool
     {
         return $this->role === UserRole::EDITOR;
     }
 
+    /**
+     * Controleert of gebruiker een normale gebruiker is
+     */
     public function isUser(): bool
     {
         return $this->role === UserRole::USER;
     }
 
+    /**
+     * Relatie met favorieten
+     */
     public function favorites(): HasMany
     {
         return $this->hasMany(Favorite::class);
     }
 
+    /**
+     * Relatie met favoriete producten
+     */
     public function favoriteProducts(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'favorites')->withTimestamps();
     }
 
+    /**
+     * Relatie met beoordelingen
+     */
     public function ratings()
     {
         return $this->hasMany(Rating::class);
     }
 
+    /**
+     * Relatie met bestellingen
+     */
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }
 
+    /**
+     * Relatie met adressen
+     */
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);

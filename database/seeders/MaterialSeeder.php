@@ -7,10 +7,15 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+/**
+ * Seeder voor materialen
+ * Vult de database met voorgedefinieerde materiaalsoorten
+ */
 class MaterialSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Voert de database seeding uit
+     * Maakt standaard materialen aan voor de webshop
      */
     public function run(): void
     {
@@ -29,8 +34,8 @@ class MaterialSeeder extends Seeder
 
         foreach ($materials as $material) {
             Material::create([
-                'name' => $material,
-                'slug' => Str::slug($material),
+                'name' => $material,              // Materiaalnaam
+                'slug' => Str::slug($material),   // URL-vriendelijke naam
             ]);
         }
     }

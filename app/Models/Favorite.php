@@ -7,16 +7,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
+ * Model voor favoriete producten
+ * Beheert de favoriete producten van gebruikers
  * 
- *
- * @property int $id
- * @property int $user_id
- * @property int $product_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\TFactory|null $use_factory
- * @property-read \App\Models\Product $product
- * @property-read \App\Models\User $user
+ * Database eigenschappen:
+ * @property int $id Unieke identifier
+ * @property int $user_id ID van de gebruiker
+ * @property int $product_id ID van het favoriete product
+ * @property \Illuminate\Support\Carbon|null $created_at Aanmaakdatum
+ * @property \Illuminate\Support\Carbon|null $updated_at Laatste wijzigingsdatum
+ * 
+ * Relaties:
+ * @property-read \App\Models\Product $product Het favoriete product
+ * @property-read \App\Models\User $user De gebruiker die het product als favoriet heeft
+ * 
+ * Beschikbare query methoden:
  * @method static \Database\Factories\FavoriteFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite newQuery()
@@ -26,20 +31,39 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Favorite whereUserId($value)
- * @mixin \Eloquent
  */
 class Favorite extends Model
 {
     /** @use HasFactory<\Database\Factories\FavoriteFactory> */
     use HasFactory;
 
-    protected $fillable = ['user_id', 'product_id'];
+    /**
+     * De velden die massaal toegewezen kunnen worden
+     * 
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',    // ID van de gebruiker
+        'product_id'  // ID van het favoriete product
+    ];
 
+    /**
+     * Definieert de relatie met het User model
+     * Een favoriet behoort toe aan één gebruiker
+     * 
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Definieert de relatie met het Product model
+     * Een favoriet verwijst naar één product
+     * 
+     * @return BelongsTo
+     */
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

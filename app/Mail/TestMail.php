@@ -10,20 +10,24 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
+/**
+ * Test Mailable klasse voor het verifiëren van e-mailfunctionaliteit
+ * Deze klasse wordt gebruikt om de e-mailconfiguratie te testen
+ */
 class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
-     * Create a new message instance.
+     * Maakt een nieuwe instantie van de test mail aan
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct() {}
 
     /**
-     * Get the message envelope.
+     * Definieert de envelope van het test e-mailbericht
+     * Stelt de afzender en het onderwerp in
+     * 
+     * @return Envelope
      */
     public function envelope(): Envelope
     {
@@ -34,7 +38,10 @@ class TestMail extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Definieert de inhoud van het test e-mailbericht
+     * Koppelt de test e-mail template
+     * 
+     * @return Content
      */
     public function content(): Content
     {
@@ -44,9 +51,9 @@ class TestMail extends Mailable
     }
 
     /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * Definieert eventuele bijlagen voor het test e-mailbericht
+     * 
+     * @return array Lijst met bijlagen (standaard leeg voor test mail)
      */
     public function attachments(): array
     {

@@ -6,10 +6,15 @@ use App\Models\StockStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+/**
+ * Seeder voor voorraadstatussen
+ * Vult de database met de standaard voorraadstatussen
+ */
 class StockStatusSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Voert de database seeding uit
+     * Maakt de basis voorraadstatussen aan voor producten
      */
     public function run(): void
     {

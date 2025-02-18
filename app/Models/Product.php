@@ -8,63 +8,38 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
+ * Model voor producten
+ * Centraal model voor alle productinformatie in de webshop
  * 
- *
- * @property int $id
- * @property string $product_number
- * @property string $name
- * @property string $slug
- * @property string $description
- * @property float $price
- * @property float|null $discount
- * @property string|null $dimensions
- * @property string|null $weight
- * @property string|null $cover
- * @property int $category_id
- * @property int $stock_status_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Category $category
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Color> $colors
- * @property-read int|null $colors_count
- * @property-read \App\Models\TFactory|null $use_factory
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductImage> $images
- * @property-read int|null $images_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Material> $materials
- * @property-read int|null $materials_count
- * @property \Illuminate\Database\Eloquent\Collection<int, Tag> $tags
- * @property-read int|null $tags_count
- * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereCover($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereDimensions($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereProductNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereStockStatusId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereWeight($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product withAllTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product withAnyTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @mixin \Eloquent
+ * Database eigenschappen:
+ * @property int $id Unieke identifier
+ * @property string $product_number Productnummer
+ * @property string $name Productnaam
+ * @property string $slug URL-vriendelijke naam
+ * @property string $description Productomschrijving
+ * @property float $price Prijs
+ * @property float|null $discount Kortingspercentage
+ * @property string|null $dimensions Afmetingen
+ * @property string|null $weight Gewicht
+ * @property string|null $cover Hoofdafbeelding
+ * @property int $category_id Categorie ID
+ * @property int $stock_status_id Voorraadstatus ID
+ * 
+ * Relaties:
+ * @property-read Category $category Productcategorie
+ * @property-read Collection<Color> $colors Beschikbare kleuren
+ * @property-read Collection<Material> $materials Beschikbare materialen
+ * @property-read Collection<ProductImage> $images Productafbeeldingen
+ * @property-read Collection<Tag> $tags Product tags
  */
 class Product extends Model
 {
-    /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
     use HasTags;
 
+    /**
+     * Voorraadstatussen met hun weergavenamen
+     */
     const STOCK_STATUS = [
         'in_stock' => 'Op voorraad',
         'low_stock' => 'Bijna uitverkocht',
@@ -72,67 +47,97 @@ class Product extends Model
         'coming_soon' => 'Binnenkort leverbaar'
     ];
 
+    /**
+     * Type casting voor attributen
+     */
     protected $casts = [
         'stock_status' => 'string'
     ];
 
-    protected $fillable = ['name', 'slug', 'cover', 'price', 'description',  'category_id'];
+    /**
+     * Velden die massaal toegewezen kunnen worden
+     */
+    protected $fillable = [
+        'name',         // Productnaam
+        'slug',         // URL-vriendelijke naam
+        'cover',        // Hoofdafbeelding
+        'price',        // Prijs
+        'description',  // Beschrijving
+        'category_id'   // Categorie ID
+    ];
 
+    /**
+     * Relatie met categorie
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Relatie met kleuren
+     */
     public function colors()
     {
         return $this->belongsToMany(Color::class);
     }
 
+    /**
+     * Relatie met materialen
+     */
     public function materials()
     {
         return $this->belongsToMany(Material::class);
     }
 
+    /**
+     * Relatie met tags
+     */
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
+    /**
+     * Relatie met productafbeeldingen
+     */
     public function images()
     {
         return $this->hasMany(ProductImage::class);
     }
 
-    public function GetDiscountPriceAttribute()
-    {
-        if ($this->discount > 0) {
-            return $this->price * (1 - $this->discount / 100);
-        }
-        return $this->price;
-    }
-
+    /**
+     * Relatie met beoordelingen
+     */
     public function ratings()
     {
         return $this->hasMany(Rating::class);
     }
 
-    // Handige methode om gemiddelde rating op te halen
-    public function getAverageRatingAttribute()
-    {
-        return $this->ratings()->avg('rating') ?? 0;
-    }
-
-    // Methode om aantal ratings op te halen
-    public function getRatingCountAttribute()
-    {
-        return $this->ratings()->count();
-    }
-
+    /**
+     * Berekent de prijs met korting
+     */
     public function getDiscountedPriceAttribute()
     {
         if ($this->discount > 0) {
             return $this->price * (1 - $this->discount / 100);
         }
         return $this->price;
+    }
+
+    /**
+     * Berekent de gemiddelde beoordeling
+     */
+    public function getAverageRatingAttribute()
+    {
+        return $this->ratings()->avg('rating') ?? 0;
+    }
+
+    /**
+     * Telt het aantal beoordelingen
+     */
+    public function getRatingCountAttribute()
+    {
+        return $this->ratings()->count();
     }
 }

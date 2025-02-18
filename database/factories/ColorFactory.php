@@ -6,10 +6,15 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
+ * Factory voor het genereren van test kleuren
+ * 
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Color>
  */
 class ColorFactory extends Factory
 {
+    /**
+     * Lijst met voorgedefinieerde kleurnamen
+     */
     protected $colors = [
         'Ruby Red',
         'Sapphire Blue',
@@ -34,8 +39,9 @@ class ColorFactory extends Factory
     ];
 
     /**
-     * Define the model's default state.
-     *
+     * Definieert de standaard waarden voor een nieuwe kleur
+     * Kiest een willekeurige kleurnaam en genereert bijbehorende slug en hex-code
+     * 
      * @return array<string, mixed>
      */
     public function definition(): array
@@ -43,9 +49,9 @@ class ColorFactory extends Factory
         $name = $this->faker->unique()->randomElement($this->colors);
 
         return [
-            'name' => $name,
-            'slug' => Str::slug($name),
-            'hex' => $this->faker->hexColor(),
+            'name' => $name,                // Naam van de kleur
+            'slug' => Str::slug($name),     // URL-vriendelijke versie van de naam
+            'hex' => $this->faker->hexColor(), // Willekeurige hex kleurcode
         ];
     }
 }
