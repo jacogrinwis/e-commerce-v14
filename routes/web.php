@@ -86,6 +86,10 @@ Route::prefix('editor')->name('editor.')->middleware(['auth', 'role:EDITOR'])->g
  */
 Route::prefix('lab')->name('lab.')->middleware(['auth', 'role:ADMIN'])->group(function () {
     route::get('stepper', \App\Livewire\Pages\Lab\StepperPage::class)->name('stepper');
+    route::get('checkout-stepper', \App\Livewire\Pages\Lab\CheckoutStepperPage::class)->name('checkout-stepper');
+    route::get('multi-step', \App\Livewire\Pages\Lab\MultiStepPage::class)->name('multi-step');
+    route::get('multi-step-form', \App\Livewire\Pages\Lab\MultiStepFormPage::class)->name('multi-step-form');
+    route::get('multi-step-form/steps', \App\Livewire\Pages\Lab\MultiStepForm\Steps::class)->name('multi-step-form.steps');
 });
 
 Route::get('/testmail', function () {
