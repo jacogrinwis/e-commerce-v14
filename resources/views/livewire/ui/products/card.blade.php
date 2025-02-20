@@ -1,6 +1,6 @@
 <div class="col-md-4">
     <div
-        class="hover:scale-101 space-y-2 rounded border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg">
+        class="hover:scale-101 shadow-xs space-y-2 rounded border border-gray-200 bg-white p-4 transition-all duration-300 hover:shadow-sm">
         <div class="card-body">
 
             <div class="relative mb-2">
@@ -40,7 +40,7 @@
             <div>
                 <x-products.stock-status :status="$product->stock_status" />
             </div>
-            <div class="mb-2 grid h-14 grid-cols-2 gap-2">
+            <div class="grid h-14 grid-cols-2 gap-2">
                 <div class="grid items-end">
                     @if ($product->discount > 0)
                         <p>

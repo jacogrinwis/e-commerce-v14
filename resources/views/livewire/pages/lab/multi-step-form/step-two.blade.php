@@ -1,6 +1,7 @@
 <div>
     <div>
         <h2 class="mb-4 text-xl font-bold">Personal Information</h2>
+        <p class="mb-4 text-sm text-gray-500">Payment info</p>
 
         <div class="space-y-4">
             <div>

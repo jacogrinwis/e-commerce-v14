@@ -2,7 +2,7 @@
     use Illuminate\Support\Facades\Route;
 @endphp
 
-<div class="container">
+<div class="container max-w-5xl">
     <main>
         <div class="mb-6">
             <x-breadcrumb />

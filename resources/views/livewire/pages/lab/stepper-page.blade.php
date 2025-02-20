@@ -69,7 +69,7 @@
                     <textarea
                         wire:model="notes"
                         rows="3"
-                        class="w-full rounded-lg border p-2"
+                        class="input-text w-full"
                     ></textarea>
                 </div>
             </div>

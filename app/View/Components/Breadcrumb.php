@@ -21,6 +21,10 @@ class Breadcrumb extends Component
 
         $this->segments = match ($routeName) {
             'home' => [],
+            'blog' => [[
+                'label' => 'Blog',
+                'url' => null
+            ]],
             'about' => [[
                 'label' => 'About',
                 'url' => null
@@ -29,10 +33,20 @@ class Breadcrumb extends Component
                 'label' => 'Contact',
                 'url' => null
             ]],
-            'products.list' => [[
-                'label' => 'Products',
-                'url' => null
-            ]],
+            // 'products.list' => [[
+            //     'label' => 'Products',
+            //     'url' => null
+            // ]],
+            'products.list' => array_merge(
+                [[
+                    'label' => 'Products',
+                    'url' => route('products.list')
+                ]],
+                request()->has('category') ? [[
+                    'label' => ucfirst(request()->query('category')),
+                    'url' => route('products.list', ['category' => request()->query('category')])
+                ]] : []
+            ),
             'products.detail' => [
                 [
                     'label' => 'Products',

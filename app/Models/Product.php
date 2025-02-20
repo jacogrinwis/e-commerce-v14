@@ -117,7 +117,7 @@ class Product extends Model
     /**
      * Berekent de prijs met korting
      */
-    public function getDiscountedPriceAttribute()
+    public function getDiscountPriceAttribute()
     {
         if ($this->discount > 0) {
             return $this->price * (1 - $this->discount / 100);

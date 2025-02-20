@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
  * Openbare Routes
  */
 Route::get('/', \App\Livewire\Pages\Home\HomePage::class)->name('home');
+Route::get('/blog', \App\Livewire\Pages\Blog\BlogPage::class)->name('blog');
 Route::get('/about', \App\Livewire\Pages\About\AboutPage::class)->name('about');
 Route::get('/contact', \App\Livewire\Pages\Contact\ContactPage::class)->name('contact');
 
@@ -44,6 +45,7 @@ Route::prefix('products')->name('products.')->group(function () {
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/shopping-cart', \App\Livewire\Pages\Cart\ShoppingCartPage::class)->name('shopping-cart');
     Route::get('/checkout', \App\Livewire\Pages\Cart\CheckoutPage::class)->name('checkout');
+    Route::get('/checkout/login', \App\Livewire\Pages\Auth\CheckoutLoginPage::class)->name('checkout.login');
     Route::get('/checkout/confirmation/{order}', \App\Livewire\Pages\Cart\CheckoutConfirmationPage::class)->name('checkout.confirmation');
 });
 
@@ -90,6 +92,7 @@ Route::prefix('lab')->name('lab.')->middleware(['auth', 'role:ADMIN'])->group(fu
     route::get('multi-step', \App\Livewire\Pages\Lab\MultiStepPage::class)->name('multi-step');
     route::get('multi-step-form', \App\Livewire\Pages\Lab\MultiStepFormPage::class)->name('multi-step-form');
     route::get('multi-step-form/steps', \App\Livewire\Pages\Lab\MultiStepForm\Steps::class)->name('multi-step-form.steps');
+    route::get('breadcrumb', \App\Livewire\Pages\Lab\BreadcrumbPage::class)->name('breadcrumb');
 });
 
 Route::get('/testmail', function () {
